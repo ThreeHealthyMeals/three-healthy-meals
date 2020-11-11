@@ -32,14 +32,14 @@ public class Restaurant extends BaseTimeEntity {
     private String phoneNumber;
 
     @NotNull
-    private String longitude;
+    private String latitude;
 
     @NotNull
-    private String latitude;
+    private String longitude;
 
     @Builder
     public Restaurant(String name, String address, String phoneNumber,
-                      String longitude, String latitude){
+                      String latitude, String longitude){
         this.name = name;
         this.address = address;
         this.phoneNumber = phoneNumber;
