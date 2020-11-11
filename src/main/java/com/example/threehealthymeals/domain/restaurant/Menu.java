@@ -1,6 +1,7 @@
 package com.example.threehealthymeals.domain.restaurant;
 
 import com.example.threehealthymeals.domain.BaseTimeEntity;
+import com.example.threehealthymeals.domain.food.Food;
 import com.sun.istack.NotNull;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -27,6 +28,10 @@ public class Menu extends BaseTimeEntity {
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 
+    @OneToOne(fetch = LAZY)
+    @JoinColumn(name = "food_id")
+    private Food food;
+
     @NotNull
     private String name;
 
@@ -35,11 +40,16 @@ public class Menu extends BaseTimeEntity {
 
     private String description;
 
+    private String imgUrl;
+
     @Builder
-    public Menu(Restaurant restaurant, String name, int price, String description){
+    public Menu(Restaurant restaurant, Food food, String name,
+                int price, String description, String imgUrl){
         this.restaurant = restaurant;
+        this.food = food;
         this.name = name;
         this.price = price;
         this.description = description;
+        this.imgUrl = imgUrl;
     }
 }
