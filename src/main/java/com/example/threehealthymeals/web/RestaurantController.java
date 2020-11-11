@@ -7,6 +7,7 @@ import com.example.threehealthymeals.domain.restaurant.MenuRepository;
 import com.example.threehealthymeals.domain.restaurant.Restaurant;
 import com.example.threehealthymeals.domain.restaurant.RestaurantRepository;
 import com.example.threehealthymeals.web.dto.RestaurantDetail;
+import com.example.threehealthymeals.web.dto.RestaurantListRequest;
 import com.example.threehealthymeals.web.dto.RestaurantSimple;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -37,9 +38,7 @@ public class RestaurantController {
     private final RestaurantRepository restaurantRepository;
 
     @GetMapping
-    public String getList(
-//            @RequestBody String ss,
-            Model model){
+    public String getList(RestaurantListRequest request, Model model){
         List<RestaurantSimple> restaurants = restaurantRepository.findAll().stream()
                 .map(RestaurantSimple::new).collect(toList());
         model.addAttribute("restaurants", restaurants);

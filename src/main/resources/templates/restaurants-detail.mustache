@@ -1,0 +1,20 @@
+{{>fragments/header}}
+<div>
+    <ul>
+        <li>{{ restaurant.name }}</li>
+        <li>{{ restaurant.address }}</li>
+        <li>{{ restaurant.phoneNumber }}</li>
+        <li>{{ restaurant.longitude }}</li>
+        <li>{{ restaurant.latitude }}</li>
+        <li>{{ restaurant.menu.name }}</li>
+        <li>{{ restaurant.menu.price }} 원</li>
+        <li>{{ restaurant.menu.description }}</li>
+        <li>{{ restaurant.menu.imgUrl }}</li>
+        <li>{{ restaurant.food.name }}</li>
+        <li>탄수화물: {{ restaurant.food.carbohydrate }} g</li>
+        <li>단백질: {{ restaurant.food.protein }} g</li>
+        <li>지방: {{ restaurant.food.fat }} g</li>
+    </ul>
+    <a href="/restaurants">뒤로가기</a>
+</div>
+{{>fragments/footer}}
