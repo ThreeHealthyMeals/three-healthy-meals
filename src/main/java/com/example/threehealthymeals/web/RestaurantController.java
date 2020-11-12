@@ -1,11 +1,7 @@
 package com.example.threehealthymeals.web;
 
-import com.example.threehealthymeals.domain.food.Food;
 import com.example.threehealthymeals.domain.food.FoodRepository;
-import com.example.threehealthymeals.domain.restaurant.Menu;
-import com.example.threehealthymeals.domain.restaurant.MenuRepository;
-import com.example.threehealthymeals.domain.restaurant.Restaurant;
-import com.example.threehealthymeals.domain.restaurant.RestaurantRepository;
+import com.example.threehealthymeals.domain.restaurant.*;
 import com.example.threehealthymeals.web.dto.RestaurantDetail;
 import com.example.threehealthymeals.web.dto.RestaurantListRequest;
 import com.example.threehealthymeals.web.dto.RestaurantSimple;
@@ -14,16 +10,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
-import static com.example.threehealthymeals.web.RestaurantController.*;
-import static java.util.stream.Collectors.toList;
+import static com.example.threehealthymeals.web.RestaurantController.RESTAURANT;
+import static com.example.threehealthymeals.web.RestaurantController.ROOT;
 
 @RequiredArgsConstructor
 @RequestMapping(ROOT+RESTAURANT)
@@ -36,11 +30,11 @@ public class RestaurantController {
     private final FoodRepository foodRepository;
     private final MenuRepository menuRepository;
     private final RestaurantRepository restaurantRepository;
+    private final RestaurantQueryRepository restaurantQueryRepository;
 
     @GetMapping
     public String getList(RestaurantListRequest request, Model model){
-        List<RestaurantSimple> restaurants = restaurantRepository.findAll().stream()
-                .map(RestaurantSimple::new).collect(toList());
+        List<RestaurantSimple> restaurants = restaurantQueryRepository.findAll(request);
         model.addAttribute("restaurants", restaurants);
         return RESTAURANT;
     }
@@ -50,11 +44,9 @@ public class RestaurantController {
         Optional<Restaurant> restaurant = restaurantRepository.findById(id);
         if(restaurant.isPresent()){
             Menu menu = menuRepository.getByRestaurant(restaurant.get());
-            Food food = menu.getFood();
             RestaurantDetail response = RestaurantDetail.builder()
                     .restaurant(restaurant.get())
                     .menu(menu)
-                    .food(food)
                     .build();
             model.addAttribute("restaurant", response);
         } else {

@@ -14,8 +14,9 @@ public class RestaurantSimple {
     private String name;
     private String address;
     private String phoneNumber;
-    private String longitude;
-    private String latitude;
+    private int price;
+    private double longitude;
+    private double latitude;
 
     public RestaurantSimple(Restaurant restaurant){
         id = restaurant.getId();
