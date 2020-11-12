@@ -1,6 +1,5 @@
 package com.example.threehealthymeals.web.dto;
 
-import com.example.threehealthymeals.domain.food.Food;
 import com.example.threehealthymeals.domain.restaurant.Menu;
 import com.example.threehealthymeals.domain.restaurant.Restaurant;
 import lombok.Builder;
@@ -17,9 +16,9 @@ public class RestaurantDetail extends RestaurantSimple{
     private FoodResponse food;
 
     @Builder
-    public RestaurantDetail(Restaurant restaurant, Menu menu, Food food){
+    public RestaurantDetail(Restaurant restaurant, Menu menu){
         super(restaurant);
         this.menu = new MenuResponse(menu);
-        this.food = new FoodResponse(food);
+        this.food = new FoodResponse(menu.getFood());
     }
 }

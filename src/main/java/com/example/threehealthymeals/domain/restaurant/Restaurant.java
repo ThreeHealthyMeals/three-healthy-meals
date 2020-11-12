@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+import java.util.List;
+
 import static javax.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PROTECTED;
 
@@ -32,18 +34,22 @@ public class Restaurant extends BaseTimeEntity {
     private String phoneNumber;
 
     @NotNull
-    private String latitude;
+    private double latitude;
 
     @NotNull
-    private String longitude;
+    private double longitude;
+
+    @NotNull
+    private boolean coronaSafe;
 
     @Builder
     public Restaurant(String name, String address, String phoneNumber,
-                      String latitude, String longitude){
+                      double latitude, double longitude, boolean coronaSafe){
         this.name = name;
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.longitude = longitude;
         this.latitude = latitude;
+        this.coronaSafe = coronaSafe;
     }
 }

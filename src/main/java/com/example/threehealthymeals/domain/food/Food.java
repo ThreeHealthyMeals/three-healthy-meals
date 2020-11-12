@@ -36,11 +36,16 @@ public class Food extends BaseTimeEntity {
     @NotNull
     private double fat;
 
+    @NotNull
+    private double calorie;
+
     @Builder
-    public Food(String name, double carbohydrate, double protein, double fat){
+    public Food(String name, double carbohydrate, double protein, double fat,
+                double calorie){
         this.name = name;
         this.carbohydrate = carbohydrate;
         this.protein = protein;
         this.fat = fat;
+        this.calorie = calorie;
     }
 }
