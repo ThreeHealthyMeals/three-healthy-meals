@@ -3,6 +3,10 @@ spring:
     properties:
       hibernate:
         default_batch_fetch_size: 1000
+  servlet:
+    multipart:
+      enabled: true
+      max-request-size: 20MB
 
 logging.level:
   org.hibernate.SQL: debug

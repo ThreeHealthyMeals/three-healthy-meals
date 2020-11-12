@@ -13,6 +13,10 @@ spring:
         default_batch_fetch_size: 1000
     hibernate:
       ddl-auto: create
+  servlet:
+    multipart:
+      enabled: true
+      max-request-size: 20MB
 
 logging.level:
   org.hibernate.SQL: debug
