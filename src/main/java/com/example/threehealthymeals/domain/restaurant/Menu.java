@@ -52,4 +52,8 @@ public class Menu extends BaseTimeEntity {
         this.description = description;
         this.imgUrl = imgUrl;
     }
+
+    public void updateImgUrl(String imgUrl){
+        this.imgUrl = imgUrl;
+    }
 }
