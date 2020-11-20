@@ -1,0 +1,10 @@
+{{>fragments/header}}
+<div>
+    <ul class="list-group">
+        <li class="list-group-item">{{ ActivityData.id }}</li>
+        <li class="list-group-item">{{ ActivityData.member.activityDate }}</li>
+        <li class="list-group-item">{{ ActivityData.member.consumedCalories }}</li>
+    </ul>
+    <a class="btn btn-primary" href="/practice_condition">뒤로가기</a>
+</div>
+{{>fragments/footer}}
