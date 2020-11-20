@@ -10,6 +10,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.*;
+
 @RequiredArgsConstructor
 @RequestMapping("/restaurants")
 @RestController
@@ -20,6 +25,17 @@ public class RestaurantApi {
     @PostMapping
     public ResponseEntity<?> create(@RequestBody RestaurantCreateRequest request){
         Restaurant restaurant = restaurantRepository.save(request.toEntity());
-        return ResponseEntity.ok(restaurant);
+        return ResponseEntity.ok(restaurant.getId());
+    }
+
+    @PostMapping("/_bulk")
+    public ResponseEntity<?> saveLists(@RequestBody List<RestaurantCreateRequest> requests){
+        List<Restaurant> restaurants = requests.stream()
+                .map(RestaurantCreateRequest::toEntity)
+                .collect(toList());
+        List<Long> ids = restaurantRepository.saveAll(restaurants)
+                .stream().map(Restaurant::getId)
+                .collect(toList());
+        return ResponseEntity.ok(ids);
     }
 }
