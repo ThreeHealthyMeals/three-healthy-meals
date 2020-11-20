@@ -1,0 +1,19 @@
+{{>fragments/header}}
+<div class="row">
+    <div class="col-lg-12">
+        <table class="table">
+            <th>사용자 데이터</th>
+            <th>날짜<th>
+            <th>섭취 칼로리</th>
+            {{ #ActivityData }}
+            <tr class="ActivityData"
+                onclick="location.href='/practice_condition/{{id}}'">
+                <td>{{name}}<th>
+                <td>{{activityDate}}</td>
+                <td>{{consumedCalories}}</td>
+            </tr>
+            {{ /ActivityData }}
+        </table>
+    </div>
+</div>
+{{>fragments/footer}}
