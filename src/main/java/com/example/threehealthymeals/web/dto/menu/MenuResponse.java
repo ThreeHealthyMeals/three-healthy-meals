@@ -1,4 +1,4 @@
-package com.example.threehealthymeals.web.dto;
+package com.example.threehealthymeals.web.dto.menu;
 
 import com.example.threehealthymeals.domain.restaurant.Menu;
 import lombok.Getter;

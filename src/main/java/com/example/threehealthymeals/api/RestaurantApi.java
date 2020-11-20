@@ -2,7 +2,7 @@ package com.example.threehealthymeals.api;
 
 import com.example.threehealthymeals.domain.restaurant.Restaurant;
 import com.example.threehealthymeals.domain.restaurant.RestaurantRepository;
-import com.example.threehealthymeals.web.dto.RestaurantCreateRequest;
+import com.example.threehealthymeals.web.dto.restaurant.RestaurantCreateRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.*;
 

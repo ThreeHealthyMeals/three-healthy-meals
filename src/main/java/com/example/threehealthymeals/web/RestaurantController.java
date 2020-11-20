@@ -2,9 +2,9 @@ package com.example.threehealthymeals.web;
 
 import com.example.threehealthymeals.domain.food.FoodRepository;
 import com.example.threehealthymeals.domain.restaurant.*;
-import com.example.threehealthymeals.web.dto.RestaurantDetail;
-import com.example.threehealthymeals.web.dto.RestaurantListRequest;
-import com.example.threehealthymeals.web.dto.RestaurantSimple;
+import com.example.threehealthymeals.web.dto.restaurant.RestaurantDetail;
+import com.example.threehealthymeals.web.dto.restaurant.RestaurantListRequest;
+import com.example.threehealthymeals.web.dto.restaurant.RestaurantSimple;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
