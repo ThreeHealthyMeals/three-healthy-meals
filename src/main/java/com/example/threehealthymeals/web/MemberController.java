@@ -1,10 +1,11 @@
 package com.example.threehealthymeals.web;
 
 import com.example.threehealthymeals.config.auth.UserAccount;
-import com.example.threehealthymeals.domain.member.Member;
-import com.example.threehealthymeals.domain.member.MemberRepository;
+import com.example.threehealthymeals.domain.member.*;
 import com.example.threehealthymeals.service.MemberService;
+import com.example.threehealthymeals.web.dto.member.GenderResponse;
 import com.example.threehealthymeals.web.dto.member.MemberResponse;
+import com.example.threehealthymeals.web.dto.member.MemberUpdateRequest;
 import com.example.threehealthymeals.web.dto.member.SignUpForm;
 import com.example.threehealthymeals.web.validator.SignUpFormValidator;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,7 @@ public class MemberController {
 
     private final SignUpFormValidator signUpFormValidator;
     private final PasswordEncoder passwordEncoder;
+    private final BodyProfileRepository bodyProfileRepository;
     private final MemberRepository memberRepository;
     private final MemberService memberService;
 
@@ -54,7 +56,11 @@ public class MemberController {
     public String myPage(Model model, @AuthenticationPrincipal UserAccount user){
         if(user != null){
             Member member = memberRepository.findByNickname(user.getUsername());
-            model.addAttribute("member", new MemberResponse(member));
+            BodyProfile profile = bodyProfileRepository.findByMemberId(member.getId());
+            GenderResponse gender = new GenderResponse(profile == null ? "" :
+                    profile.getGender().getDescription());
+            model.addAttribute("member", new MemberResponse(member, profile));
+            model.addAttribute("gender", gender);
         }
         return "account/my-page";
     }
@@ -64,14 +70,11 @@ public class MemberController {
         return "login";
     }
 
-//    @PostMapping("/login")
-//    public String loginProcess(Model model, String nickname, String password){
-//        Member member = memberRepository.findByNickname(nickname);
-//        if(member == null){
-//            model.addAttribute("error", "로그인할 수 없습니다.");
-//            return "login";
-//        }
-//        memberService.login(member);
-//        return "/";
-//    }
+    @PostMapping("/mypage")
+    public String updateBodyProfile(@AuthenticationPrincipal UserAccount user,
+                                    MemberUpdateRequest request){
+        Member member = memberRepository.findByNickname(user.getUsername());
+        memberService.updateProfile(member, request);
+        return "redirect:/mypage";
+    }
 }
