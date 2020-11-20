@@ -3,6 +3,7 @@ package com.example.threehealthymeals.web.dto;
 import com.example.threehealthymeals.domain.food.Food;
 import com.example.threehealthymeals.domain.restaurant.Menu;
 import com.example.threehealthymeals.domain.restaurant.Restaurant;
+import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,11 +12,10 @@ import lombok.Setter;
 @NoArgsConstructor
 @Setter
 public class MenuCreateRequest {
-
-    private String restaurant;
-    private String food;
-    private int price;
+    private Long restaurantId;
+    private FoodCreateRequest food;
     private String name;
+    private int price;
     private String description;
     private String imgUrl;
 
