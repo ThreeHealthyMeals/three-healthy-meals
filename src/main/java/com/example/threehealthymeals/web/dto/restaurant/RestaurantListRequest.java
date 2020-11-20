@@ -1,4 +1,4 @@
-package com.example.threehealthymeals.web.dto;
+package com.example.threehealthymeals.web.dto.restaurant;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
