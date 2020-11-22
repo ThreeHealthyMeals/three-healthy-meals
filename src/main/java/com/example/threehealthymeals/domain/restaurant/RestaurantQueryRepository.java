@@ -1,7 +1,7 @@
 package com.example.threehealthymeals.domain.restaurant;
 
-import com.example.threehealthymeals.web.dto.RestaurantListRequest;
-import com.example.threehealthymeals.web.dto.RestaurantSimple;
+import com.example.threehealthymeals.web.dto.restaurant.RestaurantListRequest;
+import com.example.threehealthymeals.web.dto.restaurant.RestaurantSimple;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;

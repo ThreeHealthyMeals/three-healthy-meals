@@ -1,4 +1,4 @@
-package com.example.threehealthymeals.web.dto;
+package com.example.threehealthymeals.web.dto.menu;
 
 import com.example.threehealthymeals.domain.restaurant.Menu;
 import lombok.Getter;
@@ -10,12 +10,14 @@ import lombok.Setter;
 @Setter
 public class MenuResponse {
 
+    private Long id;
     private String name;
     private int price;
     private String description;
     private String imgUrl;
 
     public MenuResponse(Menu menu){
+        id = menu.getId();
         name = menu.getName();
         price = menu.getPrice();
         description = menu.getDescription();

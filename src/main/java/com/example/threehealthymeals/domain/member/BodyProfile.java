@@ -31,26 +31,34 @@ public class BodyProfile extends BaseTimeEntity {
 
     @NotNull
     @Enumerated(EnumType.STRING)
-    private Gender gender;
+    private Gender gender = Gender.MALE;
 
     @NotNull
     private LocalDateTime birthday;
 
     @NotNull
-    private int height;
+    private double height;
 
     @NotNull
-    private int weight;
+    private double weight;
 
     @NotNull
-    private int targetWeight;
+    private double targetWeight;
 
     @Builder
     public BodyProfile(Member member, Gender gender, LocalDateTime birthday,
-                       int height, int weight, int targetWeight){
+                       double height, double weight, double targetWeight){
         this.member = member;
         this.gender = gender;
         this.birthday = birthday;
+        this.height = height;
+        this.weight = weight;
+        this.targetWeight = targetWeight;
+    }
+
+    public void update(Gender gender, double height, double weight,
+                       double targetWeight){
+        this.gender = gender;
         this.height = height;
         this.weight = weight;
         this.targetWeight = targetWeight;

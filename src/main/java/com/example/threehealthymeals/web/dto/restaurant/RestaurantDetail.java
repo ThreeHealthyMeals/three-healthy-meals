@@ -1,7 +1,9 @@
-package com.example.threehealthymeals.web.dto;
+package com.example.threehealthymeals.web.dto.restaurant;
 
 import com.example.threehealthymeals.domain.restaurant.Menu;
 import com.example.threehealthymeals.domain.restaurant.Restaurant;
+import com.example.threehealthymeals.web.dto.food.FoodResponse;
+import com.example.threehealthymeals.web.dto.menu.MenuResponse;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
