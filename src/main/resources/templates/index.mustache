@@ -1,8 +1,102 @@
 {{>fragments/header}}
 <div class="row">
-    <div class="col-lg-12">
-        <h1>메인 페이지</h1>
-        <a class="btn btn-primary" href="/restaurants/">식당 목록</a>
-    </div>
+
 </div>
+
+
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-lg-12">
+                <h1>메인 페이지</h1>
+                <a class="btn btn-primary" href="/restaurants/">식당 목록</a>
+                {{#nickName}}
+                    <div>유저명: {{nickName}}</div>
+                    <a class="btn btn-primary" href="/mypage">내 정보 페이지</a>
+                    <a class="btn btn-primary" href="/logout">로그아웃</a>
+                {{/nickName}}
+                {{^nickName}}
+                    <a class="btn btn-primary" href="/login">로그인</a>
+                {{/nickName}}
+            </div>
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Starter Page</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Starter Page</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4">
+
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h5 class="m-0">헬스 데이터 조회</h5>
+                    </div>
+                    <div class="card-body">
+                        <center>
+                        <div>
+                        <img src="/img/health.png" style="width:60%;margin-bottom:10%;" alt="health">
+                        </div>
+                        <a href="#"class="btn btn-primary">헬스 데이터 조회하기</a>
+                        </center>
+                    </div>
+                </div>
+            </div>
+          <!-- /.col-md-6 -->
+          <div class="col-lg-4">
+
+            <div class="card card-primary card-outline">
+              <div class="card-header">
+                <h5 class="m-0">식당조회</h5>
+              </div>
+              <div class="card-body">
+                  <center>
+                      <div>
+                        <img src="/img/restaurants.png" style="width:60%;margin-bottom:10%;" alt="restaurants">
+                      </div>
+                  <a href="restaurants" class="btn btn-primary">식당 조회하기</a>
+                  </center>
+              </div>
+            </div>
+          </div>
+            <div class="col-lg-4">
+
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h5 class="m-0">개인정보 조회</h5>
+                    </div>
+                    <div class="card-body">
+                        <center>
+                            <div>
+                                <img src="/img/user.png" style="width:60%;margin-bottom:10%;" alt="user">
+                            </div>
+
+                        <a href="#" class="btn btn-primary">개인정보 조회하기</a>
+                        </center>
+                    </div>
+                </div>
+            </div>
+          <!-- /.col-md-6 -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
 {{>fragments/footer}}
