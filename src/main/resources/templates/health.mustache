@@ -1,0 +1,258 @@
+{{>fragments/header}}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<script src="/plugins/chart.js/Chart.min.js"></script>
+<script src="/dist/js/demo.js"></script>
+<script src="/dist/js/dashboard3.js"></script>
+<!-- IonIcons -->
+<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<!-- Theme style -->
+
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+<!-- jQuery -->
+
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Health 페이지</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Health Page</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header border-0">
+                            <div class="d-flex justify-content-between">
+                                <h3 class="card-title">Sales</h3>
+                                <a href="javascript:void(0);">View Report</a>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <p class="d-flex flex-column">
+                                    <span class="text-bold text-lg">820</span>
+                                    <span>Visitors Over Time</span>
+                                </p>
+                                <p class="ml-auto d-flex flex-column text-right">
+                                    <span class="text-success">
+                                      <i class="fas fa-arrow-up"></i> 12.5%
+                                    </span>
+                                    <span class="text-muted">Since last week</span>
+                                </p>
+                            </div>
+                            <!-- /.d-flex -->
+
+                            <div class="position-relative mb-4">
+                                <canvas id="visitors-chart" height="200"></canvas>
+                            </div>
+
+                            <div class="d-flex flex-row justify-content-end">
+                                <span class="mr-2">
+                                    <i class="fas fa-square text-primary"></i> This Week
+                                </span>
+                                <span>
+                                    <i class="fas fa-square text-gray"></i> Last Week
+                                </span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- /.col-md-6 -->
+
+                    <div class="card">
+                        <div class="card-header border-0">
+                            <div class="d-flex justify-content-between">
+                                <h3 class="card-title">Sales</h3>
+                                <a href="javascript:void(0);">View Report</a>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <p class="d-flex flex-column">
+                                    <span class="text-bold text-lg">$18,230.00</span>
+                                    <span>Sales Over Time</span>
+                                </p>
+                                <p class="ml-auto d-flex flex-column text-right">
+                    <span class="text-success">
+                      <i class="fas fa-arrow-up"></i> 33.1%
+                    </span>
+                                    <span class="text-muted">Since last month</span>
+                                </p>
+                            </div>
+                            <!-- /.d-flex -->
+
+                            <div class="position-relative mb-4">
+                                <canvas id="sales-chart" height="200"></canvas>
+                            </div>
+
+                            <div class="d-flex flex-row justify-content-end">
+                                  <span class="mr-2">
+                                    <i class="fas fa-square text-primary"></i> This year
+                                  </span>
+
+                                <span>
+                                    <i class="fas fa-square text-gray"></i> Last year
+                                  </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="info-box bg-info" style="height:200px;">
+                        <span class="info-box-icon"><i class="far fa-bookmark"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Bookmarks</span>
+                            <span class="info-box-number">41,410</span>
+
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 70%"></div>
+                            </div>
+                            <span class="progress-description">
+                              70% Increase in 30 Days
+                            </span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Bordered Table</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th style="width: 10px">#</th>
+                                    <th>Task</th>
+                                    <th>Progress</th>
+                                    <th style="width: 40px">Label</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1.</td>
+                                    <td>Update software</td>
+                                    <td>
+                                        <div class="progress progress-xs">
+                                            <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge bg-danger">55%</span></td>
+                                </tr>
+                                <tr>
+                                    <td>2.</td>
+                                    <td>Clean database</td>
+                                    <td>
+                                        <div class="progress progress-xs">
+                                            <div class="progress-bar bg-warning" style="width: 70%"></div>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge bg-warning">70%</span></td>
+                                </tr>
+                                <tr>
+                                    <td>3.</td>
+                                    <td>Cron job running</td>
+                                    <td>
+                                        <div class="progress progress-xs progress-striped active">
+                                            <div class="progress-bar bg-primary" style="width: 30%"></div>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge bg-primary">30%</span></td>
+                                </tr>
+                                <tr>
+                                    <td>4.</td>
+                                    <td>Fix and squish bugs</td>
+                                    <td>
+                                        <div class="progress progress-xs progress-striped active">
+                                            <div class="progress-bar bg-success" style="width: 90%"></div>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge bg-success">90%</span></td>
+                                </tr>
+                                <tr>
+                                    <td>1.</td>
+                                    <td>Update software</td>
+                                    <td>
+                                        <div class="progress progress-xs">
+                                            <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge bg-danger">55%</span></td>
+                                </tr>
+                                <tr>
+                                    <td>2.</td>
+                                    <td>Clean database</td>
+                                    <td>
+                                        <div class="progress progress-xs">
+                                            <div class="progress-bar bg-warning" style="width: 70%"></div>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge bg-warning">70%</span></td>
+                                </tr>
+                                <tr>
+                                    <td>3.</td>
+                                    <td>Cron job running</td>
+                                    <td>
+                                        <div class="progress progress-xs progress-striped active">
+                                            <div class="progress-bar bg-primary" style="width: 30%"></div>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge bg-primary">30%</span></td>
+                                </tr>
+                                <tr>
+                                    <td>4.</td>
+                                    <td>Fix and squish bugs</td>
+                                    <td>
+                                        <div class="progress progress-xs progress-striped active">
+                                            <div class="progress-bar bg-success" style="width: 90%"></div>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge bg-success">90%</span></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer clearfix">
+                            <ul class="pagination pagination-sm m-0 float-right">
+                                <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container-fluid -->
+</div>
+<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<!-- OPTIONAL SCRIPTS -->
+
+{{>fragments/footer}}
