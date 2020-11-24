@@ -28,8 +28,8 @@
                                             <div class="col-sm-4">
                                                 <div class="custom-control custom-checkbox">
                                                     <input class="custom-control-input" type="checkbox"
-                                                           id="coronaSafe"
-                                                           value="option1" checked>
+                                                           id="coronaSafe" name="coronaSafe"
+                                                           value="option1">
                                                     <label for="coronaSafe"
                                                            class="custom-control-label">코로나안심식당</label>
                                                 </div>
@@ -37,7 +37,7 @@
                                             <div class="col-sm-4">
                                                 <div class="custom-control custom-checkbox">
                                                     <input class="custom-control-input" type="checkbox"
-                                                           id="calorie">
+                                                           id="calorie" name="calorie">
                                                     <label for="calorie" class="custom-control-label">섭취
                                                         칼로리</label>
                                                 </div>
@@ -45,7 +45,7 @@
                                             <div class="col-sm-4">
                                                 <div class="custom-control custom-checkbox">
                                                     <input class="custom-control-input" type="checkbox"
-                                                           id="activityData">
+                                                           id="activityData" name="activityData">
                                                     <label for="activityData"
                                                            class="custom-control-label">활동량</label>
                                                 </div>
@@ -53,7 +53,7 @@
                                         </div>
                                     </div>
                                     <label for="maxPrice">가격대</label>
-                                    <input type="range" class="custom-range" id="maxPrice">
+                                    <input type="range" class="custom-range" id="maxPrice" name="maxPrice">
                                 </div>
                                 <div class="col-sm-6">
                                     <!-- radio -->
@@ -61,13 +61,13 @@
                                         <div class="col-sm-6">
                                             <label class="col-form-label" for="latitude"><i
                                                     class="fas fa-check"></i>위도</label>
-                                            <input type="text" class="form-control" id="latitude"
+                                            <input type="text" class="form-control" id="latitude" name="latitude"
                                                    placeholder="ex) 32.75">
                                         </div>
                                         <div class="col-sm-6">
                                             <label class="col-form-label" for="longitude"><i
                                                     class="fas fa-check"></i>경도</label>
-                                            <input type="text" class="form-control" id="longitude"
+                                            <input type="text" class="form-control" id="longitude" name="longitude"
                                                    placeholder="ex) 127.32">
                                         </div>
                                     </div>
@@ -77,14 +77,14 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <label class="col-form-label" for="keyword"><i
-                                                class="fas fa-check"></i> 제외 키워드</label>
-                                        <input type="text" class="form-control" id="keyword"
+                                                class="fas fa-check"></i>포함 키워드</label>
+                                        <input type="text" class="form-control" id="keyword" name="keyword"
                                                placeholder="Enter ...">
                                     </div>
                                     <div class="col-sm-6">
                                         <label class="col-form-label" for="negativeKeyword"><i
-                                                class="fas fa-check"></i> 제외 키워드</label>
-                                        <input type="text" class="form-control" id="negativeKeyword"
+                                                class="fas fa-check"></i>제외 키워드</label>
+                                        <input type="text" class="form-control" id="negativeKeyword" name="negativeKeyword"
                                                placeholder="Enter ...">
                                     </div>
                                 </div>
