@@ -4,3 +4,6 @@
 .restaurant-list:hover {
     background: lightskyblue;
 }
+.custom-btn:hover{
+    cursor: pointer;
+}

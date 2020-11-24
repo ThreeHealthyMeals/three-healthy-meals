@@ -7,6 +7,7 @@ import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -22,7 +23,8 @@ import static org.springframework.util.StringUtils.isEmpty;
 public class RestaurantQueryRepository {
 
     private static final double range = 0.1;
-    private static final int minimumPrice = 1000;
+    private static final int minimumPrice = 5000;
+    private static final int maximumPrice = 50000;
     private final JPAQueryFactory queryFactory;
 
     public List<RestaurantSimple> findAll(RestaurantListRequest request){
@@ -39,8 +41,12 @@ public class RestaurantQueryRepository {
 
         return request.getMaxPrice() == 0 ? restaurants :
                 restaurants.stream()
-                .filter(r -> r.getPrice() <= Math.max(request.getMaxPrice(), minimumPrice))
-                .collect(toList());
+                    .filter(r -> isInRangePrice(r.getPrice(), request.getMaxPrice()))
+                    .collect(toList());
+    }
+
+    private boolean isInRangePrice(int price, int requestPrice){
+        return requestPrice > maximumPrice || price <= Math.max(requestPrice, minimumPrice);
     }
 
     private BooleanExpression containsKeyword(String keyword) {
@@ -58,7 +64,7 @@ public class RestaurantQueryRepository {
     }
 
     private BooleanExpression isInPosition(String latitude, String longitude){
-        return latitude == null || longitude == null ?
+        return isEmpty(latitude)|| isEmpty(longitude) ?
                 null : requireNonNull(nearLatitude(latitude)).and(nearLongitude(longitude));
     }
 
