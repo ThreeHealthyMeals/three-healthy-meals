@@ -28,8 +28,7 @@
                                             <div class="col-sm-4">
                                                 <div class="custom-control custom-checkbox">
                                                     <input class="custom-control-input" type="checkbox"
-                                                           id="coronaSafe" name="coronaSafe"
-                                                           value="option1">
+                                                           id="coronaSafe" name="coronaSafe">
                                                     <label for="coronaSafe"
                                                            class="custom-control-label">코로나안심식당</label>
                                                 </div>
@@ -53,7 +52,11 @@
                                         </div>
                                     </div>
                                     <label for="maxPrice">가격대</label>
-                                    <input type="range" class="custom-range" id="maxPrice" name="maxPrice">
+                                    <input type="range" min="5000" max="50000" step="5000"
+                                           class="custom-range" id="maxPrice" name="maxPrice"
+                                           value="50000"
+                                           oninput="this.nextElementSibling.value = this.value">
+                                    <output name="x" for="maxPrice">50000</output><span>원 이하</span>
                                 </div>
                                 <div class="col-sm-6">
                                     <!-- radio -->
@@ -122,14 +125,6 @@
                       font-size: 40px;
                       box-shadow: 0 0 5px rgba(0, 0, 0, 0.12), inset 0 0 2px rgba(0, 0, 0, 0.19);
                     }
-
-
-
-
-
-
-
-
                 </style>
 
                 <div id="map"></div>
@@ -176,14 +171,6 @@
                         );
 
                     });
-
-
-
-
-
-
-
-
 
                 </script>
 
