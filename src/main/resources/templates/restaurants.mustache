@@ -5,24 +5,96 @@
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">식당 조회하기</h1>
-                </div><!-- /.col -->
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">식당조회 페이지</li>
-                    </ol>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </div>
     <!-- /.content-header -->
     <!-- Main content -->
     <section class="content">
+        <form class="search-form" method="get" action="/restaurants">
+            <div class="row">
+                <div class="col-sm-4">
+                    <input type="text" class="search" placeholder="ex)은희네 닭떡볶이"/>
+                    <input type="submit" class="search" style="margin-top:10px;" placeholder="검색">
+                </div>
+                <div class="col-sm-8">
+                    <div class="card card-secondary">
+                        <div class="card-header">
+                            <h3 class="card-title">검색 옵션</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <!-- checkbox -->
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input class="custom-control-input" type="checkbox"
+                                                           id="coronaSafe" name="coronaSafe"
+                                                           value="option1">
+                                                    <label for="coronaSafe"
+                                                           class="custom-control-label">코로나안심식당</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input class="custom-control-input" type="checkbox"
+                                                           id="calorie" name="calorie">
+                                                    <label for="calorie" class="custom-control-label">섭취
+                                                        칼로리</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input class="custom-control-input" type="checkbox"
+                                                           id="activityData" name="activityData">
+                                                    <label for="activityData"
+                                                           class="custom-control-label">활동량</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <label for="maxPrice">가격대</label>
+                                    <input type="range" class="custom-range" id="maxPrice" name="maxPrice">
+                                </div>
+                                <div class="col-sm-6">
+                                    <!-- radio -->
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <label class="col-form-label" for="latitude"><i
+                                                    class="fas fa-check"></i>위도</label>
+                                            <input type="text" class="form-control" id="latitude" name="latitude"
+                                                   placeholder="ex) 32.75">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label class="col-form-label" for="longitude"><i
+                                                    class="fas fa-check"></i>경도</label>
+                                            <input type="text" class="form-control" id="longitude" name="longitude"
+                                                   placeholder="ex) 127.32">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label class="col-form-label" for="keyword"><i
+                                                class="fas fa-check"></i>포함 키워드</label>
+                                        <input type="text" class="form-control" id="keyword" name="keyword"
+                                               placeholder="Enter ...">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class="col-form-label" for="negativeKeyword"><i
+                                                class="fas fa-check"></i>제외 키워드</label>
+                                        <input type="text" class="form-control" id="negativeKeyword" name="negativeKeyword"
+                                               placeholder="Enter ...">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
         <div class="row">
             <div class="col-4">
                 <style>
@@ -35,14 +107,13 @@
                       max-width: 100%;
                       margin-left: 50px;
                       margin-right: 50px;
-                      margin-bottom: 50px;
                     }
                     input.search {
                       margin: 0;
                       text-align: center;
                       outline: 0;
                       border: 10px solid #f7f7f7;
-                      width: 120%;
+                      width: 100%;
                       left: -10%;
                       position: relative;
                       top: 10px;
@@ -51,10 +122,15 @@
                       font-size: 40px;
                       box-shadow: 0 0 5px rgba(0, 0, 0, 0.12), inset 0 0 2px rgba(0, 0, 0, 0.19);
                     }
+
+
+
+
+
+
+
+
                 </style>
-                <form class="search-form">
-                    <input type="text" class="search" placeholder="ex)은희네 닭떡볶이" />
-                </form>
 
                 <div id="map"></div>
                 <script type="text/javascript">
@@ -100,6 +176,14 @@
                         );
 
                     });
+
+
+
+
+
+
+
+
 
                 </script>
 

@@ -1,18 +1,5 @@
 {{>fragments/header}}
-<div class="row">
-    <div class="col-lg-12">
-        <h1>메인 페이지</h1>
-        <a class="btn btn-primary" href="/restaurants/">식당 목록</a>
-        {{#nickName}}
-            <div>유저명: {{nickName}}</div>
-            <a class="btn btn-primary" href="/mypage">내 정보 페이지</a>
-            <a class="btn btn-primary" href="/logout">로그아웃</a>
-        {{/nickName}}
-        {{^nickName}}
-            <a class="btn btn-primary" href="/login">로그인</a>
-        {{/nickName}}
 
-</div>
 
 
 <!-- Content Wrapper. Contains page content -->
@@ -22,26 +9,19 @@
       <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-lg-12">
-                <h1>메인 페이지</h1>
-                <a class="btn btn-primary" href="/restaurants/">식당 목록</a>
                 {{#nickName}}
-                    <div>유저명: {{nickName}}</div>
-                    <a class="btn btn-primary" href="/mypage">내 정보 페이지</a>
-                    <a class="btn btn-primary" href="/logout">로그아웃</a>
+                    <ol class="breadcrumb float-sm-right">
+                        <a class="btn btn-primary" href="/mypage">내 정보 페이지</a>
+                        <a class="btn btn-primary" href="/logout">로그아웃</a>
+                    </ol>
                 {{/nickName}}
                 {{^nickName}}
-                    <a class="btn btn-primary" href="/login">로그인</a>
+                    <ol class="breadcrumb float-sm-right">
+                        <a class="btn btn-primary" href="/login">로그인</a>
+                    </ol>
                 {{/nickName}}
             </div>
-          <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Starter Page</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Starter Page</li>
-            </ol>
-          </div><!-- /.col -->
+
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
@@ -60,9 +40,10 @@
                     <div class="card-body">
                         <center>
                         <div>
-                        <img src="/img/health.png" style="width:60%;margin-bottom:10%;" alt="health">
+                            <a href="health">
+                                <img src="/img/health.png" style="width:60%;margin-bottom:10%;" alt="health">
+                            </a>
                         </div>
-                        <a href="#"class="btn btn-primary">헬스 데이터 조회하기</a>
                         </center>
                     </div>
                 </div>
@@ -77,9 +58,10 @@
               <div class="card-body">
                   <center>
                       <div>
-                        <img src="/img/restaurants.png" style="width:60%;margin-bottom:10%;" alt="restaurants">
+                          <a href="restaurants">
+                            <img src="/img/restaurants.png" style="width:60%;margin-bottom:10%;" alt="restaurants">
+                          </a>
                       </div>
-                  <a href="restaurants" class="btn btn-primary">식당 조회하기</a>
                   </center>
               </div>
             </div>
@@ -93,10 +75,10 @@
                     <div class="card-body">
                         <center>
                             <div>
-                                <img src="/img/user.png" style="width:60%;margin-bottom:10%;" alt="user">
+                                <a href="/mypage" >
+                                    <img src="/img/user.png" style="width:60%;margin-bottom:10%;" alt="user">
+                                </a>
                             </div>
-
-                        <a href="#" class="btn btn-primary">개인정보 조회하기</a>
                         </center>
                     </div>
                 </div>
