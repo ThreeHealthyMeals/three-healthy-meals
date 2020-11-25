@@ -3,19 +3,17 @@ package com.example.threehealthymeals.api;
 import com.example.threehealthymeals.domain.restaurant.Restaurant;
 import com.example.threehealthymeals.domain.restaurant.RestaurantRepository;
 import com.example.threehealthymeals.web.dto.restaurant.RestaurantCreateRequest;
+import com.example.threehealthymeals.web.dto.restaurant.RestaurantSimple;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 import static java.util.stream.Collectors.*;
 
 @RequiredArgsConstructor
-@RequestMapping("/restaurants")
+@RequestMapping("/api/restaurants")
 @RestController
 public class RestaurantApi {
 
@@ -36,5 +34,13 @@ public class RestaurantApi {
                 .stream().map(Restaurant::getId)
                 .collect(toList());
         return ResponseEntity.ok(ids);
+    }
+
+    @GetMapping
+    public ResponseEntity<?> getList(){
+        List<RestaurantSimple> restaurants = restaurantRepository.findAll().stream()
+                .map(RestaurantSimple::new)
+                .collect(toList());
+        return ResponseEntity.ok(restaurants);
     }
 }
