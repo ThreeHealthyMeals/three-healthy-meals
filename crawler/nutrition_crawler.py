@@ -1,20 +1,39 @@
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 from pprint import pprint
+from selenium import webdriver
 import requests
 import urllib.parse
+import re
 
-# 예시 영양성분
-# 이부분을 검색결과 크롤링으로 변경 예정
+mainUrl = 'https://www.fatsecret.kr/'
 
-url = "https://www.fatsecret.kr/%EC%B9%BC%EB%A1%9C%EB%A6%AC-%EC%98%81%EC%96%91%EC%86%8C/%EC%9D%BC%EB%B0%98%EB%AA%85/%ED%98%BC%ED%95%A9-%EA%B2%AC%EA%B3%BC%EB%A5%98?portionid=52042&portionamount=100.000"
+# 메뉴 검색
+
+baseUrl = 'https://www.fatsecret.kr/%EC%B9%BC%EB%A1%9C%EB%A6%AC-%EC%98%81%EC%96%91%EC%86%8C/search?q='
+plusUrl = input('검색어를 입력하세요 : ')
+
+url = baseUrl + urllib.parse.quote_plus(plusUrl)
 
 html = requests.get(url)
+soup = BeautifulSoup(html.text, 'html.parser')
 
-soup = BeautifulSoup(html.text, 'html.parser', from_encoding='utf-8')
+
+search_a_tag = soup.find('a', {'class':'prominent'})
+search_link = search_a_tag.attrs['href']
+
+# 검색어에 대한 영양정보
+
+search_url = mainUrl + search_link
+
+html = requests.get(search_url)
+soup = BeautifulSoup(html.text, 'html.parser')
 
 
 # 영양정보 전체 크롤링
+
+title = soup.find('h1', {'style':'text-transform:none'})
+print(title)
 
 nutrition = soup.find('div', {'class':'nutrition_facts international'})
 
@@ -28,17 +47,12 @@ nutrition_sublist = soup.find_all('div', {'class':'nutrient sub left'})
 
 pprint(nutrition_list + nutrition_sublist)
 
+nutrition_list_amount = soup.find_all('div', {'class':'nutrient black right tRight'})
+nutrition_sublist_amount = soup.find_all('div', {'class':'nutrient right tRight'})
 
-""" 
-주소는 https://www.fatsecret.kr/칼로리-영양소/search?q=김치찌개 식으로 표현
-    search?q="음식이름" url만 변경시 접근 가능
+pprint(nutrition_list_amount + nutrition_sublist_amount)
 
-음식은
-https://www.fatsecret.kr/칼로리-영양소/음식/감자칩
-
-영양성분은
-https://www.fatsecret.kr/칼로리-영양소/일반명/감자칩?portionid=22241&portionamount=1.000
-
-https://www.foodsafetykorea.go.kr/
-
+"""
+https://www.foodsafetykorea.go.kr/fcdb/
+div serachNoResult 예외처리
 """
