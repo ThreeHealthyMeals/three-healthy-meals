@@ -1,8 +1,19 @@
 spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: 1q2w3e4r
+    url: jdbc:mysql://127.0.0.1:3306/threehealthymeals?allowPublicKeyRetrieval=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    initialization-mode: always
   jpa:
     properties:
       hibernate:
         default_batch_fetch_size: 1000
+    hibernate:
+      ddl-auto: create
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
   servlet:
     multipart:
       enabled: true
