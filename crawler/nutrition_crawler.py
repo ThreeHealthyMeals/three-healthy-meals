@@ -14,6 +14,13 @@ def searchMenu():
     
     return menuName
 
+def removeTag(text_origin):
+    text_origin = str(text_origin)
+    text_removeTag = re.sub('<.+?>', '', text_origin, 0).strip()
+
+    return text_removeTag
+
+
 baseUrl = 'https://www.fatsecret.kr/%EC%B9%BC%EB%A1%9C%EB%A6%AC-%EC%98%81%EC%96%91%EC%86%8C/search?q='
 plusUrl = searchMenu()
 
@@ -21,7 +28,6 @@ url = baseUrl + urllib.parse.quote_plus(plusUrl)
 
 html = requests.get(url)
 soup = BeautifulSoup(html.text, 'html.parser')
-
 
 search_a_tag = soup.find('a', {'class':'prominent'})
 search_link = search_a_tag.attrs['href']
@@ -37,21 +43,15 @@ soup = BeautifulSoup(html.text, 'html.parser')
 # 영양정보 전체 크롤링
 
 title = soup.find('h1', {'style':'text-transform:none'})
-print(title)
+print(removeTag(title))
 
 nutrition = soup.find('div', {'class':'nutrition_facts international'})
+nutrition = removeTag(nutrition)
 
 pprint(nutrition)
 """
 
 # 영양정보 크롤링 리스트
-
-def removeTag(text_origin):
-    text_origin = str(text_origin)
-    text_removeTag = re.sub('<.+?>', '', text_origin, 0).strip()
-
-    return text_removeTag
-
 
 nutrition_list = soup.find_all('div', {'class':'nutrient black left'})
 nutrition_sublist = soup.find_all('div', {'class':'nutrient sub left'})
