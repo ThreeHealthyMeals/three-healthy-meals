@@ -44,7 +44,7 @@ def StringToList(string):
 
 baseUrl = 'https://www.fatsecret.kr/%EC%B9%BC%EB%A1%9C%EB%A6%AC-%EC%98%81%EC%96%91%EC%86%8C/search?q='
 plusUrl = searchMenu()
-plusUrl = '불타는 짜장면'
+
 url = baseUrl + urllib.parse.quote_plus(plusUrl)
 
 open_url(url)
@@ -64,23 +64,14 @@ html = requests.get(search_url)
 soup = BeautifulSoup(html.text, 'html.parser')
 
 
-"""
-# 영양정보 전체 크롤링
+# 영양정보 크롤링 리스트
+
+# 검색어에 대해 검색된 메뉴이름
 
 title = soup.find('h1', {'style':'text-transform:none'})
 removeTag(title)
 
 print(title)
-
-nutrition = soup.find('div', {'class':'nutrition_facts international'})
-nutrition = removeTag(nutrition)
-
-print(nutrition)
-"""
-
-
-# 영양정보 크롤링 리스트
-
 
 # 서빙 사이즈
 
@@ -91,8 +82,9 @@ serving_size = removeTag(serving_size)
 serving_size_amount = removeTag(serving_size_amount)
 
 print(serving_size + serving_size_amount)
+
 """
-# 영양소
+# 영양소 명
 
 nutrition_list = soup.find_all('div', {'class':'nutrient black left'})
 nutrition_sublist = soup.find_all('div', {'class':'nutrient sub left'})
@@ -104,6 +96,7 @@ nutrition_list2 = removeTag(nutrition_list2)
 
 print(nutrition_list + nutrition_sublist + nutrition_list2)
 """
+
 # 영양소 함유량
 
 nutrition_list_amount = soup.find_all('div', {'class':'nutrient black right tRight'})
@@ -115,20 +108,19 @@ nutrition_sublist_amount = removeTag(nutrition_sublist_amount)
 nutrition_list_amount = removeBrackets(nutrition_list_amount)
 nutrition_sublist_amount = removeBrackets(nutrition_sublist_amount)
 
+# 영양소 함유랑 리스트 변환
+
 amount_list = StringToList(nutrition_list_amount)
 amount_sublist = StringToList(nutrition_sublist_amount)
 
 amount_list.extend(amount_sublist)
 
-print(amount_list)
-
 
 # 딕셔너리형태 저장
 
 nut_list = ['열량(kJ)', '탄수화물', '단백질', '지방', '열량(kcal)', '설탕당', '포화지방', '트랜스지방', '다불포화지방', '불포화지방', '콜레스테롤', '식이섬유', '나트륨', '칼륨']
-#nut_amount_list = ['3286 kJ', '129.41g', '26.81g', '19.98g', '785 kcal', '6.56g', '5.621g', '0g', '4.043g', '8.517g', '22mg', '13.8g', '600mg', '803mg']
-nut_dict = {}
 nut_amount_list = amount_list
+nut_dict = {}
 
 nut_dict = dict(zip(nut_list, nut_amount_list))
 
