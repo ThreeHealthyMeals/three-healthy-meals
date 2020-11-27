@@ -69,8 +69,7 @@ soup = BeautifulSoup(html.text, 'html.parser')
 # 검색어에 대해 검색된 메뉴이름
 
 title = soup.find('h1', {'style':'text-transform:none'})
-removeTag(title)
-
+title = removeTag(title)
 print(title)
 
 # 서빙 사이즈
@@ -118,10 +117,12 @@ amount_list.extend(amount_sublist)
 
 # 딕셔너리형태 저장
 
-nut_list = ['열량(kJ)', '탄수화물', '단백질', '지방', '열량(kcal)', '설탕당', '포화지방', '트랜스지방', '다불포화지방', '불포화지방', '콜레스테롤', '식이섬유', '나트륨', '칼륨']
+nut_list = ['name', 'carbohydrate', 'protein', 'fat', 'calorie']
 nut_amount_list = amount_list
 nut_dict = {}
 
 nut_dict = dict(zip(nut_list, nut_amount_list))
+
+nut_dict['name']=title
 
 print(nut_dict)
