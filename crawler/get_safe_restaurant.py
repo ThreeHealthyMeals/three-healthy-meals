@@ -1,29 +1,11 @@
-import requests
 import json
+from apis import *
+from menuInfoCrawler import get_menu_info
+from nutrition_crawler import get_nutrition
+
 SAFE_RESTAURANT_API_HOST = 'https://openapi.gg.go.kr/SafetyRestrntInfo?Type=json&KEY=2837dbd5f36c4daa88c8c1c8612788d5&pSize=1000'
 FAMOUS_RESTAURANT_API_HOST = 'https://openapi.gg.go.kr/PlaceThatDoATasteyFoodSt?Type=json&KEY=c962ba57009c4694930738b381f0d589&pSize=1000'
 WEB_SERVER_HOST = 'http://localhost:8080/api/'
-
-
-#TODO : 모듈화 중복코드 줄이기
-def safe_restaurant_req(method):
-    if method == 'GET':
-        return requests.get(SAFE_RESTAURANT_API_HOST)
-
-
-def famous_restaurant_req(method):
-    if method == 'GET':
-        return requests.get(FAMOUS_RESTAURANT_API_HOST)
-
-
-def post_restaurant_req(payload):
-    API_URL = WEB_SERVER_HOST + 'restaurants/_bulk'
-    return requests.post(API_URL, data=payload)
-
-
-def get_restaurant():
-    API_URL = WEB_SERVER_HOST + 'restaurants'
-    return requests.get(API_URL)
 
 
 def register_restaurant():
@@ -44,16 +26,17 @@ def register_restaurant():
     restaurants = []
     for rest in restaurant_data:
         restaurants.append(
-                {
-                    "name": rest['BIZPLC_NM'],
-                    "address": rest['REFINE_ROADNM_ADDR'],
-                    "phoneNumber": rest['TELNO'],
-                    "latitude": rest['REFINE_WGS84_LAT'],
-                    "longitude": rest['REFINE_WGS84_LOGT'],
-                    "coronaSafe": True
-                }
+            {
+                "name": rest['BIZPLC_NM'],
+                "address": rest['REFINE_ROADNM_ADDR'],
+                "phoneNumber": rest['TELNO'],
+                "latitude": rest['REFINE_WGS84_LAT'],
+                "longitude": rest['REFINE_WGS84_LOGT'],
+                "coronaSafe": True
+            }
         )
-    # TODO: DATABASE에서 중복정보 거르기
+
+    # db 비교 없는것만 추가.
     body = []
     exist_restaurants = get_restaurant().text
     for restaurant in restaurants:
@@ -72,7 +55,12 @@ def register_restaurant():
 
     restaurant_ids = post_restaurant_req(body)
 
-    #TODO: 현우, 찬혁 크롤러 부분 가져와서 api call
+    # TODO: 현우, 찬혁 크롤러 부분 가져와서 api call
     for restaurant_id in restaurant_ids:
-        pass
-
+        for restaurant in exist_restaurants:
+            if restaurant['id'] == restaurant:
+                location = restaurant['address'].split('')[:1]
+                menu = get_menu_info(location, restaurant['name'])
+                if menu:
+                    restaurant_menu = {'restaurantId': restaurant_id}.update(menu)
+                    register_restaurant_menu(restaurant_menu)
