@@ -14,8 +14,8 @@ def get_menu_info(location, restaurant):
     html = req.text
     soup = BeautifulSoup(html, 'html.parser')
     rep_menu = soup.find('div', {'class': 'menu'})
-    price = soup.find('em', {'class' : 'price'})
-    desc = soup.find('span', {'class' : 'category'})
+    price = soup.find('em', {'class': 'price'})
+    desc = soup.find('span', {'class': 'category'})
 
     if rep_menu == None or price == None or desc == None:
         try:

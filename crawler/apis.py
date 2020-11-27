@@ -18,7 +18,7 @@ def famous_restaurant_req(method):
 
 def post_restaurant_req(payload):
     API_URL = WEB_SERVER_HOST + 'restaurants/_bulk'
-    return requests.post(API_URL, data=payload)
+    return requests.post(API_URL, json=payload)
 
 
 def get_restaurant():
@@ -28,4 +28,4 @@ def get_restaurant():
 
 def register_restaurant_menu(payload):
     API_URL = WEB_SERVER_HOST + 'menus'
-    return requests.post(API_URL, data=payload)
+    return requests.post(API_URL, json=payload)
