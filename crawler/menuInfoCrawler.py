@@ -33,7 +33,7 @@ for i in range(len(location)):
     rep_menu = soup.find('div', {'class': 'menu'})
     price = soup.find('em', {'class' : 'price'})
     desc = soup.find('span', {'class' : 'category'})
-    time = soup.find('div', {'class' : 'biztime'})
+    #time = soup.find('div', {'class' : 'biztime'})
 
     if (rep_menu == None or price == None or desc == None):
         temp = soup.find_all('span', {'class': '_3Ru_R'})
@@ -47,12 +47,12 @@ for i in range(len(location)):
             time = soup.find_all('div', {'class' : '_1qN5M'})
 
             data['description'] = desc.text
-            data['time'] = time[2].text
+            #data['time'] = time[2].text
     else:
         data["name"] = rep_menu.text
         data["price"] = price_str_to_int(price.text)
         data["description"] = desc.text
-        data["time"] = time.text
+        #data["time"] = time.text
 
     url = img_url + urllib.parse.quote_plus(location[i] + '+' + res_name[i])
     req = requests.get(url)
