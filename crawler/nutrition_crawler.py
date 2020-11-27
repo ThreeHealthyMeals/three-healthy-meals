@@ -39,11 +39,20 @@ def StringToList(string):
 
     return string
 
+def removeUnit(text_origin):
+    text_origin = re.sub(' kcal', '', text_origin, 0).strip()
+    text_origin = re.sub('mg', '', text_origin, 0).strip()
+    text_origin = re.sub(' kJ', '', text_origin, 0).strip()
+    text_origin = re.sub('g', '', text_origin, 0).strip()
+    text_removeUnit = text_origin
+    
+    return text_removeUnit
+
 
 # 메뉴 검색
 
 baseUrl = 'https://www.fatsecret.kr/%EC%B9%BC%EB%A1%9C%EB%A6%AC-%EC%98%81%EC%96%91%EC%86%8C/search?q='
-plusUrl = searchMenu()
+plusUrl = '불타는 짜장면'
 
 url = baseUrl + urllib.parse.quote_plus(plusUrl)
 
@@ -70,7 +79,8 @@ soup = BeautifulSoup(html.text, 'html.parser')
 
 title = soup.find('h1', {'style':'text-transform:none'})
 title = removeTag(title)
-print(title)
+print('검색어 :', plusUrl)
+print('검색 결과 :', title)
 
 # 서빙 사이즈
 
@@ -108,6 +118,9 @@ nutrition_list_amount = removeBrackets(nutrition_list_amount)
 nutrition_sublist_amount = removeBrackets(nutrition_sublist_amount)
 
 # 영양소 함유랑 리스트 변환
+
+nutrition_list_amount = removeUnit(nutrition_list_amount)
+nutrition_sublist_amount = removeUnit(nutrition_sublist_amount)
 
 amount_list = StringToList(nutrition_list_amount)
 amount_sublist = StringToList(nutrition_sublist_amount)
