@@ -9,12 +9,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">식당 상세정보</h1>
+                    <li class="breadcrumb-item active">식당 상세정보</li>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">식당조회 페이지</a></li>
+                        <li class="breadcrumb-item active">식당조회 페이지</li>
                         <li class="breadcrumb-item active">식당상세 페이지</li>
                     </ol>
                 </div><!-- /.col -->
@@ -25,70 +25,44 @@
     <!-- Main content -->
     <section class="content">
         <div class="row">
-            <div class="col-8">
-                <div class="card">
+            <div class="col-6">
+                <div class="card card-primary">
                     <div class="card-header">
-                        <h3>{{ restaurant.name }}</li></h3>
+                        <h4 class="card-title">{{ restaurant.name }}</h4>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table>
-                            <th>&nbsp; 주소 및 연락처</th>
-                        </table>
-                        <p></p>
-                        <table class="table">
-                            {{ #restaurant }}
-                            <tr>
-                                <td>{{address}}</td>
-                            </tr>
-                            <tr>
-                                <td>{{phoneNumber}}</td>
-                            </tr>
-                            <th>
-                                <p></p>
-                                <p></p>대표메뉴</th>
-                            <tr >
-                                <td><img alt="Image Preview" src="https://dimg.donga.com/a/500/0/90/5/ugc/CDB/29STREET/Article/5e/b2/04/e8/5eb204e81752d2738236.jpg" />
-                                    {{menu.imgUrl}}</td>
-                            </tr>
-                            <tr>
-                                <td>{{menu.name}}</td>
-                            </tr>
-                            <tr>
-                                <td>{{menu.price}} 원</td>
-                            </tr>
-                            <tr>
-                                <td>{{menu.description}}</td>
-                            </tr>
-                        </table>
+                        <strong><img src="/img/telephone.png" style="width:4%;margin-bottom:2%;"></i> 연락처</strong>
+
+                        <p class="text-muted">
+                            {{restaurant.phoneNumber}}
+                        </p>
+                        <hr>
+                        <strong><img src="/img/placeholder.png" style="width:4%;margin-bottom:2%;"></i> 주소</strong>
+
+                        <p class="text-muted">{{restaurant.address}}</p>
+
+                        <hr>
+                        <strong><img src="/img/food.png" style="width:4%;margin-bottom:2%;"></i> 대표메뉴</strong>
+                        <p class="text-muted">
+                            <a>{{restaurant.menu.name}}</a> <a class="float-right">{{restaurant.menu.price}} 원</a>
+                        </p>
+                        <hr>
+                        <div class="text-center">
+                            {{restaurant.menu.imgUrl}}
+                            <img class="img-fluid mb-3"
+                                 src="https://dimg.donga.com/a/500/0/90/5/ugc/CDB/29STREET/Article/5e/b2/04/e8/5eb204e81752d2738236.jpg"
+                                 alt="menu picture">
+                        </div>
                     </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <table class="table">
-                            <th>영양정보</th>
-                            <tr>
-                                <td>요리명: {{food.name}}</td>
-                            </tr>
-                            <tr>
-                                <td>탄수화물: {{food.carbohydrate}}g</td>
-                            </tr>
-                            <tr>
-                                <td>단백질: {{food.protein}}g</td>
-                            </tr>
-                            <tr>
-                                <td>지방: {{food.fat}}g</td>
-                            </tr>
-                            {{ /restaurant }}
-                        </table>
-                    </div>
-                    <!-- /.row -->
+                    <!-- /.card-body -->
                 </div>
                 <!-- /.container-fluid -->
             </div>
+            <!-- /.row -->
             <div class="col-4">
                 <style>
-                    #map {width:100%; height:400px; clear:both; border:solid 1px red;}
+                    #map {width:100%; height:350px; clear:both; border:solid 1px red;}
                 </style>
                 <div id="map"></div>
                 <script type="text/javascript">
@@ -130,12 +104,31 @@
                         );
 
                     });
-
                 </script>
-
-
+                <p>
+                </p>
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h2 class="card-title">영양정보</h2>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <strong><i class="fas fa-pencil-alt mr-1"></i> {{restaurant.food.name}}</strong>
+                        <ul class="list-group list-group-unbordered mb-3">
+                            <li class="list-group-item">
+                                <a>탄수화물:</a> <a class="float-right">{{restaurant.food.carbohydrate}}g</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a>단백질:</a> <a class="float-right">{{restaurant.food.protein}}g</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a>지방:</a> <a class="float-right">{{restaurant.food.fat}}g</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <!-- /.content -->
+            <!-- /.row -->
         </div>
         <!-- /.content-wrapper -->
     </section>
