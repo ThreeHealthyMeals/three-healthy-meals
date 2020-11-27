@@ -22,8 +22,8 @@ public class MenuService {
 
     public MenuResponse create(MenuCreateRequest request){
         return restaurantRepository.findById(request.getRestaurantId()).map(restaurant -> {
-            Food food = foodRepository.findByName(request.getFood().getName())
-                    .orElseGet(() -> foodRepository.save(request.getFood().toEntity()));
+            Food food = request.getFood() != null ? foodRepository.findByName(request.getFood().getName())
+                    .orElseGet(() -> foodRepository.save(request.getFood().toEntity())) : null;
             Menu menu = menuRepository.save(request.toEntity(restaurant, food));
             return new MenuResponse(menu);
         }).orElse(null);
