@@ -1,7 +1,9 @@
+import re
 import json
 from apis import *
 from menuInfoCrawler import get_menu_info
 from nutrition_crawler import get_nutrition
+
 
 SAFE_RESTAURANT_API_HOST = 'https://openapi.gg.go.kr/SafetyRestrntInfo?Type=json&KEY=2837dbd5f36c4daa88c8c1c8612788d5&pSize=1000'
 FAMOUS_RESTAURANT_API_HOST = 'https://openapi.gg.go.kr/PlaceThatDoATasteyFoodSt?Type=json&KEY=c962ba57009c4694930738b381f0d589&pSize=1000'
@@ -38,28 +40,39 @@ def register_restaurant():
 
     # db 비교 없는것만 추가.
     body = []
-    exist_restaurants = get_restaurant().text
+    exist_restaurants = get_restaurant()
+    already_registered_rest = json.loads(get_restaurant().text)
     for restaurant in restaurants:
-        for k, v in restaurant.items():
-            if k not in exist_restaurants:
-                body.append(
-                    {
-                        "name": restaurant['BIZPLC_NM'],
-                        "address": restaurant['REFINE_ROADNM_ADDR'],
-                        "phoneNumber": restaurant['TELNO'],
-                        "latitude": restaurant['REFINE_WGS84_LAT'],
-                        "longitude": restaurant['REFINE_WGS84_LOGT'],
-                        "coronaSafe": True
-                    }
-                )
+        check = True
+        for dic in already_registered_rest:
+            if restaurant['name'] == dic['name']:
+                check = False
+        if check:
+            body.append(
+                {
+                    "name": restaurant['name'],
+                    "address": restaurant['address'],
+                    "phoneNumber": restaurant['phoneNumber'],
+                    "latitude": restaurant['latitude'],
+                    "longitude": restaurant['longitude'],
+                    "coronaSafe": restaurant['coronaSafe']
+                }
+            )
 
-    restaurant_ids = post_restaurant_req(body)
+    ids = re.sub('[\[\]]', '', post_restaurant_req(body).text)
+    if ids == '':
+        print('Scheduler end')
+        exit(0)
 
-    # TODO: 현우, 찬혁 크롤러 부분 가져와서 api call
+    restaurant_ids = list(ids.split(','))
+    exist_restaurants = json.loads(exist_restaurants.content.decode('utf8').replace("'", '"'))
+
+
+    #TODO: 현우, 찬혁 크롤러 부분 가져와서 api call
     for restaurant_id in restaurant_ids:
         for restaurant in exist_restaurants:
-            if restaurant['id'] == restaurant:
-                location = restaurant['address'].split('')[:1]
+            if restaurant['id'] != int(restaurant_id):
+                location = ''.join(restaurant['address'].split(' ')[:2])
                 menu = get_menu_info(location, restaurant['name'])
                 if menu:
                     restaurant_menu = {'restaurantId': restaurant_id}.update(menu)
