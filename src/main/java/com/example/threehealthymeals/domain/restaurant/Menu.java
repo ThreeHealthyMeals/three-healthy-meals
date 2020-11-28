@@ -40,6 +40,7 @@ public class Menu extends BaseTimeEntity {
 
     private String description;
 
+    @Lob
     private String imgUrl;
 
     @Builder
