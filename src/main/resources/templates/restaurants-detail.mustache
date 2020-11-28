@@ -48,8 +48,8 @@
                                 <p></p>
                                 <p></p>대표메뉴</th>
                             <tr >
-                                <td><img alt="Image Preview" src="https://dimg.donga.com/a/500/0/90/5/ugc/CDB/29STREET/Article/5e/b2/04/e8/5eb204e81752d2738236.jpg" />
-                                    {{menu.imgUrl}}</td>
+                                <td><img alt="Image Preview" src={{menu.imgUrl}} />
+                                    </td>
                             </tr>
                             <tr>
                                 <td>{{menu.name}}</td>
@@ -66,19 +66,22 @@
                 <div class="card">
                     <div class="card-body">
                         <table class="table">
-                            <th>영양정보</th>
-                            <tr>
-                                <td>요리명: {{food.name}}</td>
-                            </tr>
-                            <tr>
-                                <td>탄수화물: {{food.carbohydrate}}g</td>
-                            </tr>
-                            <tr>
-                                <td>단백질: {{food.protein}}g</td>
-                            </tr>
-                            <tr>
-                                <td>지방: {{food.fat}}g</td>
-                            </tr>
+                            {{#food}}
+                                <th>영양정보</th>
+                                <tr>
+                                    <td>요리명: {{food.name}}</td>
+                                </tr>
+                                <tr>
+                                    <td>탄수화물: {{food.carbohydrate}}g</td>
+                                </tr>
+                                <tr>
+                                    <td>단백질: {{food.protein}}g</td>
+                                </tr>
+                                <tr>
+                                    <td>지방: {{food.fat}}g</td>
+                                </tr>
+                            {{/food}}
+
                             {{ /restaurant }}
                         </table>
                     </div>
@@ -109,27 +112,27 @@
                         var mapOptions = {
                             zoom: zoomLevel,
                             center: {lat: {{ restaurant.latitude }}, lng: {{ restaurant.longitude }}},
-                            mapTypeId: google.maps.MapTypeId.ROADMAP
-                        }
-                        const myLatLng = { lat: 37.363, lng: 125.044 };
-                        var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-                        var name = '{{restaurant.name}}';
-                        var lat = {{restaurant.latitude}};
-                        var lng = {{restaurant.longitude}};
-                        var pos = { lat: lat, lng: lng };
-                        var marker = new google.maps.Marker({ position: pos, map: map, title: name });
-                        google.maps.event.addListener(marker, 'click', function() {
-                            infowindow.open(map, marker);
+                                mapTypeId: google.maps.MapTypeId.ROADMAP
+                            }
+                            const myLatLng = { lat: 37.363, lng: 125.044 };
+                            var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+                            var name = '{{restaurant.name}}';
+                            var lat = {{restaurant.latitude}};
+                            var lng = {{restaurant.longitude}};
+                            var pos = { lat: lat, lng: lng };
+                            var marker = new google.maps.Marker({ position: pos, map: map, title: name });
+                            google.maps.event.addListener(marker, 'click', function() {
+                                infowindow.open(map, marker);
+                            });
+
+                            var infowindow = new google.maps.InfoWindow(
+                                    {
+                                        content: contentString,
+                                        maxWizzzdth: markerMaxWidth
+                                    }
+                            );
+
                         });
-
-                        var infowindow = new google.maps.InfoWindow(
-                                {
-                                    content: contentString,
-                                    maxWizzzdth: markerMaxWidth
-                                }
-                        );
-
-                    });
 
                 </script>
 
@@ -139,7 +142,7 @@
         </div>
         <!-- /.content-wrapper -->
     </section>
-<div>
-    <a class="btn btn-primary" href="/restaurants">뒤로가기</a>
-</div>
-{{>fragments/footer}}
+    <div>
+        <a class="btn btn-primary" href="/restaurants">뒤로가기</a>
+    </div>
+    {{>fragments/footer}}
