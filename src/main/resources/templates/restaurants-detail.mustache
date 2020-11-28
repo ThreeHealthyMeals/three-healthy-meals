@@ -32,7 +32,6 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-<<<<<<< HEAD
                         <strong><img src="/img/telephone.png" style="width:4%;margin-bottom:2%;"></i> 연락처</strong>
 
                         <p class="text-muted">
@@ -55,60 +54,6 @@
                                  src="https://dimg.donga.com/a/500/0/90/5/ugc/CDB/29STREET/Article/5e/b2/04/e8/5eb204e81752d2738236.jpg"
                                  alt="menu picture">
                         </div>
-=======
-                        <table>
-                            <th>&nbsp; 주소 및 연락처</th>
-                        </table>
-                        <p></p>
-                        <table class="table">
-                            {{ #restaurant }}
-                            <tr>
-                                <td>{{address}}</td>
-                            </tr>
-                            <tr>
-                                <td>{{phoneNumber}}</td>
-                            </tr>
-                            <th>
-                                <p></p>
-                                <p></p>대표메뉴</th>
-                            <tr >
-                                <td><img alt="Image Preview" src={{menu.imgUrl}} />
-                                    </td>
-                            </tr>
-                            <tr>
-                                <td>{{menu.name}}</td>
-                            </tr>
-                            <tr>
-                                <td>{{menu.price}} 원</td>
-                            </tr>
-                            <tr>
-                                <td>{{menu.description}}</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <table class="table">
-                            {{#food}}
-                                <th>영양정보</th>
-                                <tr>
-                                    <td>요리명: {{food.name}}</td>
-                                </tr>
-                                <tr>
-                                    <td>탄수화물: {{food.carbohydrate}}g</td>
-                                </tr>
-                                <tr>
-                                    <td>단백질: {{food.protein}}g</td>
-                                </tr>
-                                <tr>
-                                    <td>지방: {{food.fat}}g</td>
-                                </tr>
-                            {{/food}}
-
-                            {{ /restaurant }}
-                        </table>
->>>>>>> fe9d495c8eac655cbed6968969af847d1a4fa8f2
                     </div>
                     <!-- /.card-body -->
                 </div>
@@ -117,7 +62,7 @@
             <!-- /.row -->
             <div class="col-4">
                 <style>
-                    #map {width:100%; height:350px; clear:both; border:solid 1px red;}
+                    #map {width:100%; height:385px; clear:both; border:solid 1px red;}
                 </style>
                 <div id="map"></div>
                 <script type="text/javascript">
@@ -157,13 +102,7 @@
                                         maxWizzzdth: markerMaxWidth
                                     }
                             );
-
-<<<<<<< HEAD
                     });
-=======
-                        });
-
->>>>>>> fe9d495c8eac655cbed6968969af847d1a4fa8f2
                 </script>
                 <p>
                 </p>
@@ -192,14 +131,7 @@
         </div>
         <!-- /.content-wrapper -->
     </section>
-<<<<<<< HEAD
 <div>
     <a class="btn btn-primary" href="/restaurants">뒤로가기</a>
 </div>
 {{>fragments/footer}}
-=======
-    <div>
-        <a class="btn btn-primary" href="/restaurants">뒤로가기</a>
-    </div>
-    {{>fragments/footer}}
->>>>>>> fe9d495c8eac655cbed6968969af847d1a4fa8f2
