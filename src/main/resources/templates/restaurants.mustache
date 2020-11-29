@@ -186,6 +186,11 @@
                                 <td>{{longitude}}</td>
                             </tr>
                             {{ /restaurants }}
+                            {{^restaurants }}
+                                <tr>
+                                    <td colspan="6">조회된 식당이 없습니다.</td>
+                                </tr>
+                            {{/restaurants}}
                         </table>
                         <!-- /.col-md-6 -->
                     </div>
