@@ -1,3 +1,4 @@
+from re import search
 from urllib.request import urlopen
 from urllib.error import HTTPError, URLError
 from bs4 import BeautifulSoup
@@ -23,6 +24,15 @@ def open_url(url):
     except URLError as e:
         return None
 
+def open_a_tag(url):
+    try:
+        html = requests.get(url)
+        soup = BeautifulSoup(html.text, 'html.parser')
+        search_a_tag = soup.find('a', {'class': 'prominent'})
+        search_link = search_a_tag.attrs['href']
+        return search_link
+    except AttributeError as e:
+        return None
 
 def removeBrackets(text):
     text = text[1:len(text) - 1]
@@ -53,15 +63,14 @@ def get_nutrition(food):
     url = baseUrl + urllib.parse.quote_plus(food)
 
     open_url(url)
-
-    html = requests.get(url)
-
-    soup = BeautifulSoup(html.text, 'html.parser')
-
-    search_a_tag = soup.find('a', {'class': 'prominent'})
-    search_link = search_a_tag.attrs['href']
-
+    
     # 검색어에 대한 영양정보
+
+    search_link = open_a_tag(url)
+    if(search_link == None):
+        dic_null = {}
+        print("메뉴가 없습니다.")
+        return dic_null
 
     search_url = mainUrl + search_link
 
@@ -129,3 +138,8 @@ def get_nutrition(food):
 
     nut_dict['name'] = title
     return nut_dict
+
+
+name = '스페셜모듬구이'
+result = get_nutrition(name)
+print(result)
