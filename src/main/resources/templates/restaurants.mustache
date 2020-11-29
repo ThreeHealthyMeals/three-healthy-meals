@@ -10,11 +10,7 @@
     <section class="content">
         <form class="search-form" method="get" action="/restaurants">
             <div class="row">
-                <div class="col-sm-4">
-                    <input type="text" class="search" placeholder="ex)은희네 닭떡볶이"/>
-                    <input type="submit" class="search" style="margin-top:10px;" placeholder="검색">
-                </div>
-                <div class="col-sm-8">
+                <div class="col-lg-12">
                     <div class="card card-secondary">
                         <div class="card-header">
                             <h3 class="card-title">검색 옵션</h3>
@@ -86,9 +82,14 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <label class="col-form-label" for="negativeKeyword"><i
-                                                class="fas fa-check"></i>제외 키워드</label>
+                                                class="fas fa-check"></i>외 키워드</label>
                                         <input type="text" class="form-control" id="negativeKeyword" name="negativeKeyword"
                                                placeholder="Enter ...">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 text-right">
+                                        <input type="submit" class="search" value="검색">
                                     </div>
                                 </div>
                             </div>
@@ -102,28 +103,13 @@
             <div class="col-4">
                 <style>
                     #map {width:100%; height:400px; clear:both; border:solid 1px red;}
-                    input {
-                      width: 100%;
-                      padding: 20px;
-                    }
                     .search-form {
                       max-width: 100%;
-                      margin-left: 50px;
-                      margin-right: 50px;
                     }
                     input.search {
-                      margin: 0;
-                      text-align: center;
-                      outline: 0;
-                      border: 10px solid #f7f7f7;
-                      width: 100%;
-                      left: -10%;
-                      position: relative;
-                      top: 10px;
-                      z-index: 2;
-                      border-radius: 5px;
-                      font-size: 40px;
-                      box-shadow: 0 0 5px rgba(0, 0, 0, 0.12), inset 0 0 2px rgba(0, 0, 0, 0.19);
+                        font-size: 1rem;
+                        padding: 4px 20px;
+                        margin-top: 10px;
                     }
                 </style>
 
@@ -178,7 +164,7 @@
             <div class="col-8">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">안심식당 리스트</h3>
+                        <h3 class="card-title">맛집 리스트</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
