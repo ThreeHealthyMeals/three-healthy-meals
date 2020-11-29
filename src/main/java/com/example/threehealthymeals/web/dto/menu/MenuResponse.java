@@ -21,6 +21,6 @@ public class MenuResponse {
         name = menu.getName();
         price = menu.getPrice();
         description = menu.getDescription();
-        imgUrl = menu.getImgUrl();
+        imgUrl = menu.getImgUrl() == null ? "/img/logo.PNG" : menu.getImgUrl();
     }
 }
