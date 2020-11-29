@@ -49,10 +49,9 @@
                         </p>
                         <hr>
                         <div class="text-center">
-                            {{restaurant.menu.imgUrl}}
                             <img class="img-fluid mb-3"
-                                 src="https://dimg.donga.com/a/500/0/90/5/ugc/CDB/29STREET/Article/5e/b2/04/e8/5eb204e81752d2738236.jpg"
-                                 alt="menu picture">
+                                 src="{{restaurant.menu.imgUrl}}"
+                                 alt="No Image">
                         </div>
                     </div>
                     <!-- /.card-body -->
@@ -112,18 +111,23 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <strong><i class="fas fa-pencil-alt mr-1"></i> {{restaurant.food.name}}</strong>
-                        <ul class="list-group list-group-unbordered mb-3">
-                            <li class="list-group-item">
-                                <a>탄수화물:</a> <a class="float-right">{{restaurant.food.carbohydrate}}g</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a>단백질:</a> <a class="float-right">{{restaurant.food.protein}}g</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a>지방:</a> <a class="float-right">{{restaurant.food.fat}}g</a>
-                            </li>
-                        </ul>
+                        {{#restaurant.food}}
+                            <strong><i class="fas fa-pencil-alt mr-1"></i> {{restaurant.food.name}}</strong>
+                            <ul class="list-group list-group-unbordered mb-3">
+                                <li class="list-group-item">
+                                    <a>탄수화물:</a> <a class="float-right">{{restaurant.food.carbohydrate}}g</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a>단백질:</a> <a class="float-right">{{restaurant.food.protein}}g</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a>지방:</a> <a class="float-right">{{restaurant.food.fat}}g</a>
+                                </li>
+                            </ul>
+                        {{/restaurant.food}}
+                        {{^restaurant.food}}
+                            입력된 영양정보가 없습니다.
+                        {{/restaurant.food}}
                     </div>
                 </div>
             </div>
