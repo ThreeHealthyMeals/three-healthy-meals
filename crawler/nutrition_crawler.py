@@ -49,83 +49,87 @@ def removeUnit(text_origin):
 # 메뉴 검색
 
 def get_nutrition(food):
-    baseUrl = 'https://www.fatsecret.kr/%EC%B9%BC%EB%A1%9C%EB%A6%AC-%EC%98%81%EC%96%91%EC%86%8C/search?q='
-    url = baseUrl + urllib.parse.quote_plus(food)
+    try:
+        baseUrl = 'https://www.fatsecret.kr/%EC%B9%BC%EB%A1%9C%EB%A6%AC-%EC%98%81%EC%96%91%EC%86%8C/search?q='
+        url = baseUrl + urllib.parse.quote_plus(food)
 
-    open_url(url)
+        open_url(url)
 
-    html = requests.get(url)
+        html = requests.get(url)
 
-    soup = BeautifulSoup(html.text, 'html.parser')
+        soup = BeautifulSoup(html.text, 'html.parser')
 
-    search_a_tag = soup.find('a', {'class': 'prominent'})
-    search_link = search_a_tag.attrs['href']
+        search_a_tag = soup.find('a', {'class': 'prominent'})
+        search_link = search_a_tag.attrs['href']
 
-    # 검색어에 대한 영양정보
+        # 검색어에 대한 영양정보
 
-    search_url = mainUrl + search_link
+        search_url = mainUrl + search_link
 
-    html = requests.get(search_url)
-    soup = BeautifulSoup(html.text, 'html.parser')
+        html = requests.get(search_url)
+        soup = BeautifulSoup(html.text, 'html.parser')
 
-    # 영양정보 크롤링 리스트
+        # 영양정보 크롤링 리스트
 
-    # 검색어에 대해 검색된 메뉴이름
+        # 검색어에 대해 검색된 메뉴이름
 
-    title = soup.find('h1', {'style': 'text-transform:none'})
-    title = removeTag(title)
+        title = soup.find('h1', {'style': 'text-transform:none'})
+        title = removeTag(title)
 
-    # 서빙 사이즈
+        # 서빙 사이즈
 
-    serving_size = soup.find('div', {'class': 'serving_size black serving_size_label'})
-    serving_size_amount = soup.find('div', {'class': 'serving_size black serving_size_value'})
+        serving_size = soup.find('div', {'class': 'serving_size black serving_size_label'})
+        serving_size_amount = soup.find('div', {'class': 'serving_size black serving_size_value'})
 
-    serving_size = removeTag(serving_size)
-    serving_size_amount = removeTag(serving_size_amount)
+        serving_size = removeTag(serving_size)
+        serving_size_amount = removeTag(serving_size_amount)
 
-    print(serving_size + serving_size_amount)
+        print(serving_size + serving_size_amount)
 
-    """
-    # 영양소 명
+        """
+        # 영양소 명
 
-    nutrition_list = soup.find_all('div', {'class':'nutrient black left'})
-    nutrition_sublist = soup.find_all('div', {'class':'nutrient sub left'})
-    nutrition_list2 = soup.find_all('div', {'class':'nutrient left'})
+        nutrition_list = soup.find_all('div', {'class':'nutrient black left'})
+        nutrition_sublist = soup.find_all('div', {'class':'nutrient sub left'})
+        nutrition_list2 = soup.find_all('div', {'class':'nutrient left'})
 
-    nutrition_list = removeTag(nutrition_list)
-    nutrition_sublist = removeTag(nutrition_sublist)
-    nutrition_list2 = removeTag(nutrition_list2)
+        nutrition_list = removeTag(nutrition_list)
+        nutrition_sublist = removeTag(nutrition_sublist)
+        nutrition_list2 = removeTag(nutrition_list2)
 
-    print(nutrition_list + nutrition_sublist + nutrition_list2)
-    """
+        print(nutrition_list + nutrition_sublist + nutrition_list2)
+        """
 
-    # 영양소 함유량
+        # 영양소 함유량
 
-    nutrition_list_amount = soup.find_all('div', {'class': 'nutrient black right tRight'})
-    nutrition_sublist_amount = soup.find_all('div', {'class': 'nutrient right tRight'})
+        nutrition_list_amount = soup.find_all('div', {'class': 'nutrient black right tRight'})
+        nutrition_sublist_amount = soup.find_all('div', {'class': 'nutrient right tRight'})
 
-    nutrition_list_amount = removeTag(nutrition_list_amount)
-    nutrition_sublist_amount = removeTag(nutrition_sublist_amount)
+        nutrition_list_amount = removeTag(nutrition_list_amount)
+        nutrition_sublist_amount = removeTag(nutrition_sublist_amount)
 
-    nutrition_list_amount = removeBrackets(nutrition_list_amount)
-    nutrition_sublist_amount = removeBrackets(nutrition_sublist_amount)
+        nutrition_list_amount = removeBrackets(nutrition_list_amount)
+        nutrition_sublist_amount = removeBrackets(nutrition_sublist_amount)
 
-    # 영양소 함유랑 리스트 변환
+        # 영양소 함유랑 리스트 변환
 
-    nutrition_list_amount = removeUnit(nutrition_list_amount)
-    nutrition_sublist_amount = removeUnit(nutrition_sublist_amount)
+        nutrition_list_amount = removeUnit(nutrition_list_amount)
+        nutrition_sublist_amount = removeUnit(nutrition_sublist_amount)
 
-    amount_list = StringToList(nutrition_list_amount)
-    amount_sublist = StringToList(nutrition_sublist_amount)
+        amount_list = StringToList(nutrition_list_amount)
+        amount_sublist = StringToList(nutrition_sublist_amount)
 
-    amount_list.extend(amount_sublist)
+        amount_list.extend(amount_sublist)
 
-    # 딕셔너리형태 저장
+        # 딕셔너리형태 저장
 
-    nut_list = ['name', 'carbohydrate', 'protein', 'fat', 'calorie']
-    nut_amount_list = amount_list
+        nut_list = ['name', 'carbohydrate', 'protein', 'fat', 'calorie']
+        nut_amount_list = amount_list
 
-    nut_dict = dict(zip(nut_list, nut_amount_list))
+        nut_dict = dict(zip(nut_list, nut_amount_list))
 
-    nut_dict['name'] = title
-    return nut_dict
+        nut_dict['name'] = title
+        return nut_dict
+
+    except Exception as e:
+        return None
