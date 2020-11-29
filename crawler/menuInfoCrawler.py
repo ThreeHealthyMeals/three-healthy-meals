@@ -4,8 +4,7 @@ import urllib.parse
 
 
 base_url = 'https://search.naver.com/search.naver?sm=tab_hty.top&where=nexearch&query='
-img_url = 'https://search.naver.com/search.naver?where=image&section=post&query='
-rest_img_url ='&res_fr=0&res_to=0&sm=tab_opt&face=0&color=0&ccl=0&nso=so%3Ar%2Ca%3Aall%2Cp%3Aall&datetype=0&startdate=0&enddate=0&start=1'
+img_url = 'https://search.naver.com/search.naver?where=image&sm=tab_jum&query='
 
 
 def price_str_to_int(str):
@@ -49,7 +48,7 @@ def get_menu_info(location, restaurant):
             data["price"] = price_str_to_int(price.text)
             data["description"] = desc.text
 
-        url = img_url + urllib.parse.quote_plus(location + '+' + restaurant) + rest_img_url
+        url = img_url + urllib.parse.quote_plus(location + '+' + restaurant)
         req = requests.get(url)
         html = req.text
         soup = BeautifulSoup(html, 'html.parser')
