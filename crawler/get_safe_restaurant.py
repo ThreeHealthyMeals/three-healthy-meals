@@ -62,7 +62,6 @@ def register_restaurant():
     ids = re.sub('[\[\]]', '', post_restaurant_req(body).text)
     if ids == '':
         print('Scheduler end')
-        exit(0)
 
     restaurant_ids = list(ids.split(','))
     exist_restaurants = json.loads(exist_restaurants.content.decode('utf8').replace("'", '"'))
@@ -88,4 +87,6 @@ def register_restaurant():
                 #TODO: delete no menu
                 delete_restaurant(restaurant_id)
         except KeyError as e:
+            delete_restaurant(restaurant_id)
+        except Exception:
             delete_restaurant(restaurant_id)
