@@ -29,3 +29,8 @@ def get_restaurant():
 def register_restaurant_menu(payload):
     API_URL = WEB_SERVER_HOST + 'menus'
     return requests.post(API_URL, json=payload)
+
+
+def delete_restaurant(restaurant_id):
+    API_URL = WEB_SERVER_HOST + 'restaurants' + restaurant_id
+    return requests.delete(API_URL)

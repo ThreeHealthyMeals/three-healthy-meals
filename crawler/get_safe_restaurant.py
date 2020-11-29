@@ -69,13 +69,23 @@ def register_restaurant():
 
 
     #TODO: 현우, 찬혁 크롤러 부분 가져와서 api call
+
     for idx, restaurant_id in enumerate(restaurant_ids):
-        location = ''.join(body[idx]['address'].split(' ')[:2])
-        menu = get_menu_info(location, body[idx]['name'])
-        if menu:
-            print('registered...')
-            restaurant_menu = {'restaurantId': restaurant_id, **menu}
-            register_restaurant_menu(restaurant_menu)
-        else:
-            #TODO: delete no menu
-            pass
+        try:
+            location = ''.join(body[idx]['address'].split(' ')[:2])
+            menu = get_menu_info(location, body[idx]['name'])
+            if menu and menu['name']:
+                print('registered...')
+                food = get_nutrition(menu['name'])
+                if food:
+                    food['name'] = menu['name']
+                    restaurant_menu = {'restaurantId': restaurant_id, **menu, 'food': food}
+                else:
+                    restaurant_menu = {'restaurantId': restaurant_id, **menu}
+
+                register_restaurant_menu(restaurant_menu)
+            else:
+                #TODO: delete no menu
+                delete_restaurant(restaurant_id)
+        except KeyError as e:
+            delete_restaurant(restaurant_id)
