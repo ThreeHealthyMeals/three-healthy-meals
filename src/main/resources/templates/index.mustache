@@ -1,0 +1,210 @@
+{{>fragments/header}}
+
+
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-lg-12">
+                    {{#nickName}}
+                        <ol class="breadcrumb float-sm-right">
+                            <a class="btn btn-primary" href="/mypage">내 정보 페이지</a>
+                            <a class="btn btn-primary" href="/logout">로그아웃</a>
+                        </ol>
+                    {{/nickName}}
+                    {{^nickName}}
+                        <ol class="breadcrumb float-sm-right">
+                            <a class="btn btn-primary" href="/login">로그인</a>
+                        </ol>
+                    {{/nickName}}
+                </div>
+
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-4 custom-btn" onclick="location.href='/health'">
+                    <div class="card card-primary card-outline">
+                        <div class="card-header">
+                            <h5 class="m-0">헬스 데이터 조회</h5>
+                        </div>
+                        <div class="card-body">
+                            <center>
+                                <div>
+                                    <img src="/img/healthdash.png" style="width:60%;margin-bottom:10%;" alt="health">
+                                </div>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col-md-6 -->
+                <div class="col-lg-4 custom-btn" onclick="location.href='/restaurants'">
+                    <div class="card card-primary card-outline">
+                        <div class="card-header">
+                            <h5 class="m-0">식당조회</h5>
+                        </div>
+                        <div class="card-body">
+                            <center>
+                                <div>
+                                    <img src="/img/restaurants.png" style="width:60%;margin-bottom:10%;"
+                                         alt="restaurants">
+                                </div>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 custom-btn" onclick="location.href='/mypage'">
+                    <div class="card card-primary card-outline">
+                        <div class="card-header">
+                            <h5 class="m-0">개인정보 조회</h5>
+                        </div>
+                        <div class="card-body">
+                            <center>
+                                <div>
+                                    <img src="/img/userdash.png" style="width:60%;margin-bottom:10%;" alt="user">
+                                </div>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
+            <div class="row" style="width:100%;margin-top:5%">
+                <div style="float:left;margin-right:1%;margin-left:1%">
+                    <!-- Widget: user widget style 1 -->
+                    <div class="card card-widget widget-user">
+                        <!-- Add the bg color to the header using any of the bg-* classes -->
+                        <div class="widget-user-header bg-info">
+                            <h3 class="widget-user-username">JunYoung Choi</h3>
+                            <h5 class="widget-user-desc">Back End</h5>
+                        </div>
+                        <div class="widget-user-image">
+                            <img src="/img/jun.png" class="img-circle elevation-2" alt="User Image">
+                        </div>
+                        <div class="card-footer">
+                        </div>
+                    </div>
+                    <!-- /.widget-user -->
+                </div>
+                <!-- /.col -->
+                <div style="float:left;margin-right:1%">
+                    <!-- Widget: user widget style 1 -->
+                    <div class="card card-widget widget-user">
+                        <!-- Add the bg color to the header using any of the bg-* classes -->
+                        <div class="widget-user-header bg-info">
+                            <h3 class="widget-user-username">ChaeMoon Jung</h3>
+                            <h5 class="widget-user-desc">Back End</h5>
+                        </div>
+                        <div class="widget-user-image">
+                            <img src="/img/chae.png" class="img-circle elevation-2" alt="User Image">
+                        </div>
+                        <div class="card-footer">
+                        </div>
+                    </div>
+                    <!-- /.widget-user -->
+                </div>
+                <!-- /.col -->
+                <div style="float:left;margin-right:1%">
+                    <!-- Widget: user widget style 1 -->
+                    <div class="card card-widget widget-user">
+                        <!-- Add the bg color to the header using any of the bg-* classes -->
+                        <div class="widget-user-header bg-info">
+                            <h3 class="widget-user-username">HyunWoo Park</h3>
+                            <h5 class="widget-user-desc">Back End</h5>
+                        </div>
+                        <div class="widget-user-image">
+                            <img src="/img/hyun.png" class="img-circle elevation-2" alt="User Image">
+                        </div>
+                        <div class="card-footer">
+                        </div>
+                    </div>
+                    <!-- /.widget-user -->
+                </div>
+                <!-- /.col -->
+                <div style="float:left;margin-right:1%">
+                    <!-- Widget: user widget style 1 -->
+                    <div class="card card-widget widget-user">
+                        <!-- Add the bg color to the header using any of the bg-* classes -->
+                        <div class="widget-user-header bg-info">
+                            <h3 class="widget-user-username">ChanHyeok Park</h3>
+                            <h5 class="widget-user-desc">Back End</h5>
+                        </div>
+                        <div class="widget-user-image">
+                            <img src="/img/chan.png" class="img-circle elevation-2" alt="User Image">
+                        </div>
+                        <div class="card-footer">
+                        </div>
+                    </div>
+                    <!-- /.widget-user -->
+                </div>
+                <!-- /.col -->
+                <div style="float:left;margin-right:1%">
+                    <!-- Widget: user widget style 1 -->
+                    <div class="card card-widget widget-user">
+                        <!-- Add the bg color to the header using any of the bg-* classes -->
+                        <div class="widget-user-header bg-info">
+                            <h3 class="widget-user-username">HyukJin Jang</h3>
+                            <h5 class="widget-user-desc">Font End</h5>
+                        </div>
+                        <div class="widget-user-image">
+                            <img src="/img/hyuk.png" class="img-circle elevation-2" alt="User Image">
+                        </div>
+                        <div class="card-footer">
+                        </div>
+                    </div>
+                    <!-- /.widget-user -->
+                </div>
+                <!-- /.col -->
+                <div style="float:left;margin-right:1%">
+                    <!-- Widget: user widget style 1 -->
+                    <div class="card card-widget widget-user">
+                        <!-- Add the bg color to the header using any of the bg-* classes -->
+                        <div class="widget-user-header bg-info">
+                            <h3 class="widget-user-username">SeoHyeon Lee</h3>
+                            <h5 class="widget-user-desc">Front End</h5>
+                        </div>
+                        <div class="widget-user-image">
+                            <img src="/img/seo.png" class="img-circle elevation-2" alt="User Image">
+                        </div>
+                        <div class="card-footer">
+                        </div>
+                    </div>
+                    <!-- /.widget-user -->
+                </div>
+                <div style="float:left;margin-right:1%">
+                    <!-- Widget: user widget style 1 -->
+                    <div class="card card-widget widget-user">
+                        <!-- Add the bg color to the header using any of the bg-* classes -->
+                        <div class="widget-user-header bg-info">
+                            <h3 class="widget-user-username">JinSoo Hwang</h3>
+                            <h5 class="widget-user-desc">Front End</h5>
+                        </div>
+                        <div class="widget-user-image">
+                            <img src="/img/jin.png" class="img-circle elevation-2" alt="User Image">
+                        </div>
+                        <div class="card-footer">
+                        </div>
+                    </div>
+                    <!-- /.widget-user -->
+                </div>
+                <!-- /.col -->
+
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+
+</div>
+<!-- /.content-wrapper -->
+
+{{>fragments/footer}}
