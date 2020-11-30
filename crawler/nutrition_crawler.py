@@ -29,22 +29,39 @@ def open_a_tag(url):
         html = requests.get(url)
         soup = BeautifulSoup(html.text, 'html.parser')
         search_a_tag = soup.find('a', {'class': 'prominent'})
+        
+        search_a_tag_href = soup.find_all('a', {'class': 'prominent'})
+        #페이지 모든 태그 리스트
+        a_tag_link = []
+        for i in search_a_tag_href:
+            href = i.attrs['href']
+            a_tag_link.append(href)
+        #원래 가장 처음 나오는 페이지 주소
         search_link = search_a_tag.attrs['href']
+        # 다른 메뉴 검색용
         search_a_tags = soup.find_all('a', {'class': 'prominent'})
         a_tag_text = removeTag(search_a_tags)
         a_tag_text = removeBrackets(a_tag_text)
         a_tag_text_list = StringToList(a_tag_text)
-        print(a_tag_text)
         i = 0
         for i in range(0, len(a_tag_text_list)):
             str = '구이'
             correct = a_tag_text_list[i].endswith(str)
             if(correct == True):
                 break
-        return search_link
+
+        return a_tag_link[i]
     except AttributeError as e:
         return None
+
+def alternativeMenu():
+
+    return num
         
+def ModifyMenuname(str_origin):
+    str_modify = str_origin[len(str_origin)-2:len(str_origin)]
+    return str_modify
+
 def removeBrackets(text):
     text = text[1:len(text) - 1]
 
@@ -81,9 +98,7 @@ def get_nutrition(food):
     
     if(search_link == None):
         print("메뉴가 없습니다.")
-        str_origin = food
-        str_modify = str_origin[len(str_origin)-2:len(str_origin)]
-        food = str_modify
+        food = ModifyMenuname(food)
         url = baseUrl + urllib.parse.quote_plus(food)
         search_link = open_a_tag(url)
     
