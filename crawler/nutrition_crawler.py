@@ -29,11 +29,9 @@ def open_a_tag(url):
         html = requests.get(url)
         soup = BeautifulSoup(html.text, 'html.parser')
         search_a_tag = soup.find('a', {'class': 'prominent'})
-        
-        # 가장 처음 나오는 페이지 주소
         search_link = search_a_tag.attrs['href']
 
-        return search_a_tag
+        return search_link
     except AttributeError as e:
         return None
 
@@ -175,8 +173,3 @@ def get_nutrition(food):
 
     nut_dict['name'] = title
     return nut_dict
-
-
-name = '스페셜모듬구이'
-result = get_nutrition(name)
-print(result)
