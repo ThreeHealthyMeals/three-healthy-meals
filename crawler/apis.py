@@ -18,7 +18,11 @@ def famous_restaurant_req(method):
 
 def post_restaurant_req(payload):
     API_URL = WEB_SERVER_HOST + 'restaurants/_bulk'
+<<<<<<< HEAD
     return requests.post(API_URL, data=payload)
+=======
+    return requests.post(API_URL, json=payload)
+>>>>>>> develop
 
 
 def get_restaurant():

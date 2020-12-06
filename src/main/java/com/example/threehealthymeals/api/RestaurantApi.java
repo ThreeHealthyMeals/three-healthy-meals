@@ -1,5 +1,9 @@
 package com.example.threehealthymeals.api;
 
+import com.example.threehealthymeals.domain.food.Food;
+import com.example.threehealthymeals.domain.food.FoodRepository;
+import com.example.threehealthymeals.domain.restaurant.Menu;
+import com.example.threehealthymeals.domain.restaurant.MenuRepository;
 import com.example.threehealthymeals.domain.restaurant.Restaurant;
 import com.example.threehealthymeals.domain.restaurant.RestaurantRepository;
 import com.example.threehealthymeals.web.dto.restaurant.RestaurantCreateRequest;
@@ -9,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 import static java.util.stream.Collectors.*;
 
@@ -18,6 +23,8 @@ import static java.util.stream.Collectors.*;
 public class RestaurantApi {
 
     private final RestaurantRepository restaurantRepository;
+    private final MenuRepository menuRepository;
+    private final FoodRepository foodRepository;
 
     @PostMapping
     public ResponseEntity<?> create(@RequestBody RestaurantCreateRequest request){
@@ -43,4 +50,21 @@ public class RestaurantApi {
                 .collect(toList());
         return ResponseEntity.ok(restaurants);
     }
+<<<<<<< HEAD
+=======
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id){
+        Optional<Restaurant> restaurant = restaurantRepository.findById(id);
+        restaurant.ifPresent(res -> {
+            Menu menu = menuRepository.getByRestaurant(res);
+            if(menu.getFood() != null){
+                foodRepository.findById(menu.getFood().getId()).ifPresent(foodRepository::delete);
+            }
+            menuRepository.delete(menu);
+            restaurantRepository.delete(res);
+        });
+        return ResponseEntity.ok(restaurant.isPresent() ? "deleted" : "can't find");
+    }
+>>>>>>> develop
 }

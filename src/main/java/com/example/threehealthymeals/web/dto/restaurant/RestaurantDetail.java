@@ -21,6 +21,7 @@ public class RestaurantDetail extends RestaurantSimple{
     public RestaurantDetail(Restaurant restaurant, Menu menu){
         super(restaurant);
         this.menu = new MenuResponse(menu);
-        this.food = new FoodResponse(menu.getFood());
+        if(menu.getFood() != null)
+            this.food = new FoodResponse(menu.getFood());
     }
 }
