@@ -18,9 +18,9 @@ public class MenuResponse {
 
     public MenuResponse(Menu menu){
         id = menu.getId();
-        name = menu.getName();
+        name = menu.getName() == null ? "정보 없음" : menu.getName();
         price = menu.getPrice();
-        description = menu.getDescription();
-        imgUrl = menu.getImgUrl();
+        description = menu.getDescription() == null ? "정보 없음" : menu.getDescription();
+        imgUrl = menu.getImgUrl() == null ? "/img/logo.PNG" : menu.getImgUrl();
     }
 }

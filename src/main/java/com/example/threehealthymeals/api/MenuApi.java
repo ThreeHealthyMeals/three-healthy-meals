@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RequiredArgsConstructor
-@RequestMapping("/menus")
+@RequestMapping("/api/menus")
 @RestController
 public class MenuApi {
 
@@ -36,5 +36,10 @@ public class MenuApi {
         Menu menu = byId.get();
         menu.updateImgUrl(imgUrl);
         return ResponseEntity.ok(menu);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id){
+        return null;
     }
 }

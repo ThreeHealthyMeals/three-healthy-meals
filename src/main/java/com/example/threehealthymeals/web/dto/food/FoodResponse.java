@@ -16,7 +16,7 @@ public class FoodResponse {
     private double fat;
 
     public FoodResponse(Food food){
-        name = food.getName();
+        name = food.getName() == null ? "정보 없음" : food.getName();
         carbohydrate = food.getCarbohydrate();
         protein = food.getProtein();
         fat = food.getFat();
