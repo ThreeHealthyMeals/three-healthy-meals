@@ -137,24 +137,6 @@
                         var pos = new Array();
                         var marker;
                         {{ #restaurants }}
-<<<<<<< HEAD
-                        var name = '{{name}}';
-                        var lat = {{latitude}};
-                        var lng = {{longitude}};
-                        var pos = { lat: lat, lng: lng };
-                        var marker = new google.maps.Marker({ position: pos, map: map, title: name });
-                        google.maps.event.addListener(marker, 'click', function() {
-                            infowindow.open(map, marker);
-                        });
-                        {{ /restaurants }}
-
-                        var infowindow = new google.maps.InfoWindow(
-                            {
-                                content: contentString,
-                                maxWizzzdth: markerMaxWidth
-                            }
-                        );
-=======
 
                             var contentString	= '<div>' +
                             '<h2>{{name}}</h2>'+
@@ -176,7 +158,6 @@
                                 }
                             })(marker, i));
                         }
->>>>>>> develop
 
                     });
 
